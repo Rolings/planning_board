@@ -1703,6 +1703,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "IndexComponent"
 });
@@ -36998,9 +37014,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c(
+        "form",
+        { staticClass: "login", attrs: { method: "post", action: "" } },
+        [
+          _c("p", [
+            _c("label", { attrs: { for: "login" } }, [_vm._v("Логин:")]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "text",
+                name: "login",
+                id: "login",
+                value: "name@example.com"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("label", { attrs: { for: "password" } }, [_vm._v("Пароль:")]),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "password",
+                name: "password",
+                id: "password",
+                value: "4815162342"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "login-submit" }, [
+            _c(
+              "button",
+              { staticClass: "login-button", attrs: { type: "submit" } },
+              [_vm._v("Войти")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "forgot-password" }, [
+            _c("a", { attrs: { href: "index.html" } }, [
+              _vm._v("Забыл пароль?")
+            ])
+          ])
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -52008,26 +52077,14 @@ var routes = [{
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************!*\
+  !*** multi ./resources/js/app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\htdocs\laravel.sandbox\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\htdocs\laravel.sandbox\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })
