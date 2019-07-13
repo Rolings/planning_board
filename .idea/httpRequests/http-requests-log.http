@@ -1,0 +1,403 @@
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T015752.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T011943.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T124936.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T123251.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T123236.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T123224.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T122935.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T115045.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T115002.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114949.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114929.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114908.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114858.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114851.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114841.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114826.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114744.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114712.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114703.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114607.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114557.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114517.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114510.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114454.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.comw&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T114445.404.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.comw&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112444.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112421.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112414.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112409.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112402.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112312.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112311.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112257.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112256.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112235.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112224.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112218.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112203.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112151.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.coms&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112144.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T112100.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+csrf-token: EQtNVkYl3mxuXY6VEVG9luhbCcCSNDsTomtABvaH
+
+<> 2019-07-13T110610.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+csrf-token: EQtNVkYl3mxuXY6VEVG9luhbCcCSNDsTomtABvaH
+
+<> 2019-07-13T110544.302.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+csrf-token: EQtNVkYl3mxuXY6VEVG9luhbCcCSNDsTomtABvaH
+
+<> 2019-07-13T110430.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110323.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110255.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110220.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110147.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110100.500.html
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-13T110012.500.html
+
+###
+
