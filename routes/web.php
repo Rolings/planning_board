@@ -15,4 +15,12 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/category', 'CategoryController@category')->name('category');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
