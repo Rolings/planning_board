@@ -1,8 +1,15 @@
 require('./bootstrap');
 window.Vue = require('vue');
+
+
 import VueRouter from 'vue-router';
 import routes from './routes';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+
 Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
 const url = '/';
 const router = new VueRouter({
