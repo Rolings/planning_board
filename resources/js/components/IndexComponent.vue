@@ -3,12 +3,12 @@
         <form method="post" action="" class="login">
             <p>
                 <label for="login">Логин:</label>
-                <input type="text" name="login" id="login" value="name@example.com">
+                <input type="text" name="login" id="login" value="admin@admin.com">
             </p>
 
             <p>
                 <label for="password">Пароль:</label>
-                <input type="password" name="password" id="password" value="4815162342">
+                <input type="password" name="password" id="password" value="secret">
             </p>
 
             <p class="login-submit">
