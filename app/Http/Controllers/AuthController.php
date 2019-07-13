@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,18 +11,19 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+     //   $userdata  = json_decode($request->all(), true);
 
         $userdata = request(['email', 'password']);
 
+
+
        $validator = Validator::make($userdata, [
-            'email' => 'required|email',
-            'password' => 'required|min:5'
+            'email' => 'required',
+            'password' => 'required'
         ]);
 
-
-
         if ($validator->fails())
-            return ['false'];
+            return response()->json(['error' => 'Not valid'], 401);
 
         $user = Auth::attempt($userdata);
 

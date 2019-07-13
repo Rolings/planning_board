@@ -2,6 +2,22 @@ POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
 Accept: */*
 Cache-Control: no-cache
 
+<> 2019-07-14T015752.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-07-14T011943.200.json
+
+###
+
+POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
+Accept: */*
+Cache-Control: no-cache
+
 <> 2019-07-14T124936.200.json
 
 ###
@@ -382,22 +398,6 @@ Accept: */*
 Cache-Control: no-cache
 
 <> 2019-07-13T110012.500.html
-
-###
-
-POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-07-13T105947.500.html
-
-###
-
-POST http://localhost:3000/api/auth?email=admin@admin.com&password=secret
-Accept: */*
-Cache-Control: no-cache
-
-<> 2019-07-13T105758.500.html
 
 ###
 
