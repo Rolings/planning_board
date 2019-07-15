@@ -41,7 +41,16 @@
                     password: this.password
                 })
                     .then(function (response) {
-                        currentObj.output = response.data;
+                        if(response){
+                            if(response.data.status===true){
+                                window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
+                                localStorage.setItem('access_token', response.data.access_token);
+                                //this.$router.push('/account');
+                                location.href = '/account';
+                            }
+                        }
+
+                        //currentObj.output = response.data;
                     })
                     .catch(function (error) {
                         currentObj.output = error;

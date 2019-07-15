@@ -17,11 +17,12 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
     Route::post('/', 'AuthController@login');
-/*    Route::post('logout', 'AuthController@logout');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('register', 'AuthController@register');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');*/
+    Route::post('me', 'AuthController@me');
 });
-Route::middleware('jwt.auth')->post('test', 'TestController@testMethod');
+//Route::middleware('jwt.auth')->post('test', 'TestController@testMethod');
 
 
 /*Route::middleware('jwt.auth')->get('users', function () {
