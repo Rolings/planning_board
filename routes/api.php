@@ -14,13 +14,22 @@ use Illuminate\Http\Request;
 
 
 //Route::post('auth', 'AuthController@login');
-
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
     Route::post('register', 'AuthController@register');
+    Route::get('open', 'DataController@open');
+});
+
+
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
+    Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
+});
+
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('closed', 'DataController@closed');
 });
 //Route::middleware('jwt.auth')->post('test', 'TestController@testMethod');
 
