@@ -6,9 +6,18 @@ use Illuminate\Http\Request;
 
 class UserAccount extends Controller
 {
-    public function __construct()
+   public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('jwt.auth')->except(['index']);
     }
-    //
+
+    public function index(Request $request)
+    {
+        return view('user-account.home');
+    }
+    public function getUser(){
+
+    }
+
+
 }

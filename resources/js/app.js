@@ -11,6 +11,8 @@ import VueAxios from 'vue-axios'
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
+Vue.component('user-account-component', require('./components/UserAccountComponent.vue').default);
+
 const url = '/';
 const router = new VueRouter({
     routes,
@@ -18,7 +20,4 @@ const router = new VueRouter({
     mode: 'history'
 });
 
-const app = new Vue({
-    el: '#app',
-    router,
-});
+const app = new Vue({el: '#app', router,});

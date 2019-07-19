@@ -41,7 +41,19 @@
                     password: this.password
                 })
                     .then(function (response) {
-                        currentObj.output = response.data;
+                        if(response){
+                            if(response.data.status===true){
+                                window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
+                                localStorage.setItem('access_token', response.data.access_token);
+                                let now = new Date();
+                                let time = now.getTime();
+                                time += 1000 * response.data.expires_in;
+                                now.setTime(time);
+                                document.cookie="access_token="+response.data.access_token+"; path=/; expires="+ now.toUTCString();
+                              //  location.href = '/account?token='+response.data.access_token;
+                                location.href = '/account';
+                            }
+                        }
                     })
                     .catch(function (error) {
                         currentObj.output = error;
