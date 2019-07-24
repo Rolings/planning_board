@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class UserAccount extends Controller
@@ -18,6 +19,11 @@ class UserAccount extends Controller
     public function getUser(){
 
     }
+    public function getMenu(){
+       return Menu::all();
+    }
+
+
 
 
 }

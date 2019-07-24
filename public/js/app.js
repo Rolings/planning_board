@@ -1772,9 +1772,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "UserAccountComponent"
+  name: "UserAccountComponent",
+  mounted: function mounted() {
+    console.log('Component mounted.');
+    this.getMenu();
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    getMenu: function getMenu() {
+      var currentObj = this;
+      window.axios.defaults.headers.common['Authorization'] = localStorage.getItem('access_token');
+      this.axios.get('http://localhost:3000/api/auth/get-menu').then(function (response) {
+        if (response) {}
+      })["catch"](function (error) {
+        currentObj.output = error;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37180,7 +37197,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "forgot-password" })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52291,8 +52308,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\htdocs\laravel.sandbox\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\htdocs\laravel.sandbox\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
