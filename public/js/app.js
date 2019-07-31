@@ -1734,7 +1734,7 @@ __webpack_require__.r(__webpack_exports__);
     formSubmit: function formSubmit(e) {
       e.preventDefault();
       var currentObj = this;
-      this.axios.post('http://localhost:3000/api/auth', {
+      this.axios.post(window.baseUrl + '/api/auth', {
         email: this.email,
         password: this.password
       }).then(function (response) {
@@ -1783,9 +1783,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMenu: function getMenu() {
-      var currentObj = this;
-      window.axios.defaults.headers.common['Authorization'] = localStorage.getItem('access_token');
-      this.axios.get('http://localhost:3000/api/auth/get-menu').then(function (response) {
+      var currentObj = this; // window.axios.defaults.headers.common['Authorization'] = localStorage.getItem('access_token');
+
+      window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
+      this.axios.post(window.baseUrl + '/api/get-menu').then(function (response) {
         if (response) {}
       })["catch"](function (error) {
         currentObj.output = error;
@@ -52055,7 +52056,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_3___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a);
 Vue.component('index-component', __webpack_require__(/*! ./components/IndexComponent.vue */ "./resources/js/components/IndexComponent.vue")["default"]);
 Vue.component('user-account-component', __webpack_require__(/*! ./components/UserAccountComponent.vue */ "./resources/js/components/UserAccountComponent.vue")["default"]);
-var url = '/';
+var url = window.baseUrl;
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_1__["default"],
   base: url,

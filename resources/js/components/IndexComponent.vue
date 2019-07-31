@@ -24,7 +24,7 @@
     export default {
         name: "IndexComponent",
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
         },
         data() {
             return {
@@ -36,7 +36,7 @@
             formSubmit(e) {
                 e.preventDefault();
                 let currentObj = this;
-                this.axios.post('http://localhost:3000/api/auth', {
+                this.axios.post(window.baseUrl+'/api/auth', {
                     email: this.email,
                     password: this.password
                 })

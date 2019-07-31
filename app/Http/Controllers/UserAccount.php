@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class UserAccount extends Controller
 {
@@ -14,6 +16,11 @@ class UserAccount extends Controller
 
     public function index(Request $request)
     {
+        JavaScriptFacade::put([
+            'baseUrl' => URL::to(''),
+            'assetUrl' => URL::asset(''),
+            'csrfToken' => csrf_token(),
+        ]);
         return view('user-account.home');
     }
     public function getUser(){

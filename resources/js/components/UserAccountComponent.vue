@@ -14,8 +14,9 @@
         methods: {
             getMenu() {
                 let currentObj = this;
-                window.axios.defaults.headers.common['Authorization'] = localStorage.getItem('access_token');
-                this.axios.get('http://localhost:3000/api/auth/get-menu').then(function (response) {
+               // window.axios.defaults.headers.common['Authorization'] = localStorage.getItem('access_token');
+                window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
+                this.axios.post(window.baseUrl+'/api/get-menu').then(function (response) {
                     if (response) {
                     }
                 }).catch(function (error) {

@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jwt.auth')->except(['login']);
+    }
 
     public function register(Request $request)
     {
@@ -22,7 +26,7 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
-    public function login(Request $request)
+    public function login()
     {
         $userdata = request(['email', 'password']);
         $validator = Validator::make($userdata, [
