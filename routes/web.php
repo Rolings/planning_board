@@ -14,5 +14,5 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/account', 'UserAccount@index')->name('account');
+Route::get('/dashboard', 'UserAccount@index')->name('dashboard');
 

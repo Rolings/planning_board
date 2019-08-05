@@ -10,17 +10,18 @@ use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 class UserAccount extends Controller
 {
    public function __construct()
-    {
-        $this->middleware('jwt.auth')->except(['index']);
-    }
+   {
+       JavaScriptFacade::put([
+           'baseUrl' => URL::to(''),
+           'assetUrl' => URL::asset(''),
+           'csrfToken' => csrf_token(),
+       ]);
+       $this->middleware('jwt.auth')->except(['index']);
+   }
 
     public function index(Request $request)
     {
-        JavaScriptFacade::put([
-            'baseUrl' => URL::to(''),
-            'assetUrl' => URL::asset(''),
-            'csrfToken' => csrf_token(),
-        ]);
+
         return view('user-account.home');
     }
     public function getUser(){
