@@ -21,3 +21,6 @@ mix.styles('resources/css/style.css', 'public/css/style.css');
 mix.browserSync({
     proxy: 'http://plannin.gboard.loc'
 });
+if (mix.config.inProduction) {
+    mix.version()
+}
