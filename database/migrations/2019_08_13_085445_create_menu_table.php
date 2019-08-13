@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateMenuTable extends Migration {
 
@@ -32,7 +33,7 @@ class CreateMenuTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('menu');
+		Schema::dropIfExists('menu');
 	}
 
 }
