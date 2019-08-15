@@ -12,13 +12,13 @@ import VueAxios from 'vue-axios'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 library.add(faCoffee);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueSidebarMenu);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
 Vue.component('user-account', require('./components/UserAccountComponent.vue').default);
 

@@ -1,12 +1,17 @@
 <template>
-        <sidebar></sidebar>
+    <sidebar></sidebar>
+    <contentComponent></contentComponent>
 </template>
-
 <script>
     import SidebarMenu from '../components/SidebarMenuComponent';
+    import Dashboard from '../components/dashboard/DashboardComponent';
+
     export default {
         name: 'UserAccountComponent',
-
+        components: {
+            sidebar: SidebarMenu,
+            Dashboard
+        },
         data() {
             return {
                 menu: [
@@ -18,9 +23,7 @@
                 ]
             };
         },
-        components: {
-            sidebar : SidebarMenu
-        },
+
         mounted() {
             this.checkAuth();
         },
@@ -38,6 +41,9 @@
                     }).catch(function (error) {
                     currentObj.output = error;
                 });
+            },
+            renderContent() {
+
             }
         }
     };
