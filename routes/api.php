@@ -19,13 +19,13 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('check-auth', 'AuthController@checkAuth');
 });
 
-Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::post('get-menu', 'UserAccount@getMenu');
-});
-
 Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-
-
 });
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('get-menu', 'MenuController@index');
+});
+
+

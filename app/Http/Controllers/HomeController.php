@@ -10,8 +10,9 @@ class HomeController extends Controller
     public function index()
     {
         JavaScriptFacade::put([
-            'baseUrl' => URL::to(''),
-            'assetUrl' => URL::asset('')
+            'baseUrl' => '/',
+            'base' => URL::to(''),
+            'csrfToken' => csrf_token(),
         ]);
         return view('home');
     }

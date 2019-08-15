@@ -12,8 +12,8 @@ class UserAccount extends Controller
    public function __construct()
    {
        JavaScriptFacade::put([
-           'baseUrl' => URL::to(''),
-           'assetUrl' => URL::asset(''),
+           'baseUrl' => '/',
+           'base' => URL::to(''),
            'csrfToken' => csrf_token(),
        ]);
        $this->middleware('jwt.auth')->except(['index']);
@@ -27,9 +27,7 @@ class UserAccount extends Controller
     public function getUser(){
 
     }
-    public function getMenu(){
-       return Menu::all();
-    }
+
 
 
 

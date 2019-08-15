@@ -1,12 +1,12 @@
 <template>
-        <sidebar></sidebar>
+    <sidebar-menu :menu="menu" />
 </template>
-
 <script>
-    import SidebarMenu from '../components/SidebarMenuComponent';
-    export default {
-        name: 'UserAccountComponent',
 
+
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+    export default {
+        name: "SidebarMenuComponent",
         data() {
             return {
                 menu: [
@@ -16,18 +16,29 @@
                         icon: 'fa fa-list'
                     }
                 ]
-            };
+            }
         },
         components: {
-            sidebar : SidebarMenu
+            FontAwesomeIcon
         },
-        mounted() {
+        mounted(){
             this.checkAuth();
+            this.getMenu();
         },
         methods: {
-            checkAuth() {
+            getMenu() {
                 let currentObj = this;
-                window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+                window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
+                this.axios.post(window.base + '/api/get-menu')
+                    .then(response => {
+                            this.menu = response.data;
+                    }).catch(function (error) {
+                    currentObj.output = error;
+                });
+            },
+            checkAuth(){
+                let currentObj = this;
+                window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
                 this.axios.get(window.base + '/api/auth/check-auth')
                     .then(function (response) {
                         if (response) {
@@ -40,7 +51,8 @@
                 });
             }
         }
-    };
+
+    }
 </script>
 
 <style scoped>

@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class DataController extends Controller
 {
-    /*    public function open()
-        {
-            return view('user-account.home');
-        }*/
-
     public function open()
     {
         $data = "This data is open and can be accessed without the client being authenticated";

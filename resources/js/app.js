@@ -1,3 +1,5 @@
+import {SidebarMenu} from 'vue-sidebar-menu/src';
+
 require('./bootstrap');
 window.Vue = require('vue');
 
@@ -18,7 +20,7 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueSidebarMenu);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
-Vue.component('user-account-component', require('./components/UserAccountComponent.vue').default);
+Vue.component('user-account', require('./components/UserAccountComponent.vue').default);
 
 const url =  window.baseUrl;
 const router = new VueRouter({

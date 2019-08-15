@@ -36,7 +36,7 @@
             formSubmit(e) {
                 e.preventDefault();
                 let currentObj = this;
-                this.axios.post(window.baseUrl+'/api/auth', {
+                this.axios.post(window.base+'/api/auth', {
                     email: this.email,
                     password: this.password
                 }).then(function (response) {
@@ -44,7 +44,7 @@
                             if(response.data.status===true){
                                 window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
                                 localStorage.setItem('access_token', response.data.access_token);
-                                location.href = '/dashboard';
+                                location.href = '/admin/dashboard';
                             }
                         }
                     })
@@ -55,10 +55,10 @@
             checkAuth(){
                 let currentObj = this;
                 window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
-                this.axios.get(window.baseUrl+'/api/auth/check-auth').then(function (response) {
+                this.axios.get(window.base+'/api/auth/check-auth').then(function (response) {
                     if (response) {
                         if(!response.data.error){
-                            location.href = '/dashboard';
+                            location.href = '/admin/dashboard';
                         }
                     }
                 }).catch(function (error) {
