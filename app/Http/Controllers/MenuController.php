@@ -8,29 +8,26 @@ use App\Models\Menu;
 class MenuController extends Controller
 {
     protected $menu;
-    protected $final_menu = [];
+    protected $child_menu = [];
     protected $exclude_id = [];
 
     protected function createMenuTree($menu)
     {
         foreach ($this->menu as $index_menu => $step_menu) {
             if ($step_menu['parent_id'] === $menu['id']) {
-                $this->final_menu[$menu['id']]['child'][] = $step_menu;
+                $this->child_menu[$menu['id']]['child'][] = $step_menu;
                 $this->exclude_id[] = $step_menu['id'];
             }
         }
         krsort($this->menu);
         foreach ($this->menu as $index => $menu) {
-            if (isset($this->final_menu[$menu['id']])) {
-                $this->menu[$index]['child'] = $this->final_menu[$menu['id']]['child'];
+            if (isset($this->child_menu[$menu['id']])) {
+                $this->menu[$index]['child'] = $this->child_menu[$menu['id']]['child'];
             }
-
         }
-
         usort($this->menu, function ($a, $b) {
             return $b['order'] - $a['order'];
         });
-
         $this->exclude_id = array_values($this->exclude_id);
 
         foreach ($this->menu as $index => $menu) {
@@ -41,14 +38,13 @@ class MenuController extends Controller
             }
         }
 
-
     }
 
     public function index()
     {
         $this->menu = Menu::orderBy('id', 'desc')->get()->toArray();
         foreach ($this->menu as $index_menu => $menu) {
-             $this->createMenuTree($menu);
+            $this->createMenuTree($menu);
         }
         return $this->menu;
     }
