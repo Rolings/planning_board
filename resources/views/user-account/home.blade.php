@@ -1,4 +1,4 @@
 @extends('layouts.master')
 @section('content')
-        <index-component></index-component>
+    <user-account></user-account>
 @endsection

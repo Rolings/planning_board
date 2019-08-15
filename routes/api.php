@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 /*
-|--------------------------------------------------------------------------
+|-----------------------------------------------------UserAccount---------------------
 | API Routes
 |--------------------------------------------------------------------------
 |
@@ -12,31 +12,20 @@ use Illuminate\Http\Request;
 |
 */
 
-
-//Route::post('auth', 'AuthController@login');
-
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/', 'AuthController@login');
-/*    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');*/
+    Route::post('register', 'AuthController@register');
+    Route::get('open', 'DataController@open');
+    Route::get('check-auth', 'AuthController@checkAuth');
 });
-Route::middleware('jwt.auth')->post('test', 'TestController@testMethod');
+
+Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+});
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::post('get-menu', 'MenuController@index');
+});
 
 
-/*Route::middleware('jwt.auth')->get('users', function () {
-    return auth('api')->user();
-});*/
-
-
-/*Route::group(['middleware' => 'api', 'prefix' => 'auth'], function () {
-    Route::post('login', 'APILoginController@login');
-    Route::post('logout', 'APILoginController@logout');
-    Route::post('refresh', 'APILoginController@refresh');
-    Route::post('me', 'APILoginController@me');
-
-});*/
-
-/*Route::middleware('jwt.auth')->get('users', function () {
-    return auth('api')->user();
-});*/

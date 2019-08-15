@@ -14,7 +14,6 @@
             <p class="login-submit">
                 <button type="submit" class="login-button">Войти</button>
             </p>
-
             <!--<p class="forgot-password"><a href="index.html">Забыл пароль?</a></p>-->
         </form>
     </div>
@@ -24,7 +23,8 @@
     export default {
         name: "IndexComponent",
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
+            this.checkAuth();
         },
         data() {
             return {
@@ -36,16 +36,34 @@
             formSubmit(e) {
                 e.preventDefault();
                 let currentObj = this;
-                this.axios.post('http://localhost:3000/api/auth', {
+                this.axios.post(window.base+'/api/auth', {
                     email: this.email,
                     password: this.password
-                })
-                    .then(function (response) {
-                        currentObj.output = response.data;
+                }).then(function (response) {
+                        if(response){
+                            if(response.data.status===true){
+                                window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
+                                localStorage.setItem('access_token', response.data.access_token);
+                                location.href = '/admin/dashboard';
+                            }
+                        }
                     })
                     .catch(function (error) {
                         currentObj.output = error;
                     });
+            },
+            checkAuth(){
+                let currentObj = this;
+                window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
+                this.axios.get(window.base+'/api/auth/check-auth').then(function (response) {
+                    if (response) {
+                        if(!response.data.error){
+                            location.href = '/admin/dashboard';
+                        }
+                    }
+                }).catch(function (error) {
+                    currentObj.output = error;
+                });
             }
         }
     }
