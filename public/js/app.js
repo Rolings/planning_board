@@ -48681,8 +48681,14 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("sidebar")
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -64376,8 +64382,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

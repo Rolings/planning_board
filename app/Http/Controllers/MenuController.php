@@ -46,6 +46,7 @@ class MenuController extends Controller
         foreach ($this->menu as $index_menu => $menu) {
             $this->createMenuTree($menu);
         }
+
         return $this->menu;
     }
 }

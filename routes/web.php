@@ -1,6 +1,6 @@
 <?php
 
-/*
+/*    <contentComponent></contentComponent>
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@
 
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/admin/{page?}', 'UserAccount@index')->name('dashboard');
-
+Route::get('/admin', 'AdminController@index')->name('dashboard');
+Route::get('/admin/{page?}', 'AdminController@index')->name('dashboard');
 
 

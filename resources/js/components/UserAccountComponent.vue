@@ -1,6 +1,6 @@
 <template>
     <sidebar></sidebar>
-    <contentComponent></contentComponent>
+
 </template>
 <script>
     import SidebarMenu from '../components/SidebarMenuComponent';
