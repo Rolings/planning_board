@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class DBImport extends Command
 {
@@ -38,7 +39,14 @@ class DBImport extends Command
     public function handle()
     {
         $files = scandir(storage_path('backups/'), SCANDIR_SORT_DESCENDING);
-        $newest_file = $files[0];
-        $this->info($newest_file);
+        if(!empty($files)){
+            $file = $files[0];
+
+            $path = storage_path('backups/'.$file);
+            DB::unprepared(file_get_contents($path));
+            $this->info('The backup has been proceed successfully.');
+        }else
+            $this->info('File: '.$files.' is empty.');
+
     }
 }

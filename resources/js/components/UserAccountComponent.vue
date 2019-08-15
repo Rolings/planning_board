@@ -2,7 +2,6 @@
     <sidebar-menu :menu="menu" />
 </template>
 <script>
-
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
     export default {
         name: "UserAccountComponent",
@@ -36,7 +35,10 @@
                 this.axios.post(window.baseUrl + '/api/get-menu')
                     .then(function (response) {
                         if (response) {
-                            this.menu = response.data;
+
+
+                           this.menu.push(response.data);
+                            console.log(response.data)
 
                         }
                     }).catch(function (error) {

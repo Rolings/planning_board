@@ -11472,7 +11472,8 @@ __webpack_require__.r(__webpack_exports__);
       window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
       this.axios.post(window.baseUrl + '/api/get-menu').then(function (response) {
         if (response) {
-          this.menu = response.data;
+          this.menu.push(response.data);
+          console.log(response.data);
         }
       })["catch"](function (error) {
         currentObj.output = error;
@@ -62035,8 +62036,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
