@@ -11,11 +11,6 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        JavaScriptFacade::put([
-            'baseUrl' => '/',
-            'base' => URL::to(''),
-            'csrfToken' => csrf_token(),
-        ]);
         $this->middleware('jwt.auth')->except(['index']);
     }
 

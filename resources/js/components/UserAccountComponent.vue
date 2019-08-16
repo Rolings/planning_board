@@ -1,16 +1,23 @@
 <template>
-    <sidebar></sidebar>
-
+    <div>
+        <div class="sidebar-block">
+            <sidebar></sidebar>
+        </div>
+        <div class="content-block">
+            <contentBlock></contentBlock>
+        </div>
+    </div>
 </template>
 <script>
     import SidebarMenu from '../components/SidebarMenuComponent';
     import Dashboard from '../components/dashboard/DashboardComponent';
+    import Menu from '../components/menu/MenuComponents';
 
     export default {
         name: 'UserAccountComponent',
         components: {
             sidebar: SidebarMenu,
-            Dashboard
+            contentBlock : Dashboard
         },
         data() {
             return {
