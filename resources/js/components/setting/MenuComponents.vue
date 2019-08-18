@@ -4,7 +4,11 @@
         <div class="menu-list-control"></div>
         <div>
             <ul class="menu-list">
-                <li  class="menu-list-item title"></li>
+                <li class="title-menu menu-list-item">
+                    <div class="menu-item-title">
+                        <label>Name</label>
+                    </div>
+                </li>
                 <li class="menu-list-item" v-for="menu in menus">
                     <div class="menu-item-title">
                         <label>{{ menu.title }}</label>
