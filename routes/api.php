@@ -25,6 +25,7 @@ Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
 
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('get-menu', 'MenuController@index');
+    Route::post('get-full-menu', 'MenuController@getFullMenu');
 });
 
 

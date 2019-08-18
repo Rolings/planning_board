@@ -31,12 +31,12 @@ class MenuController extends Controller
 
         foreach ($this->menu as $index => $menu) {
             if (isset($this->child_menu[$menu['id']])) {
-                $this->child_menu[$menu['id']]['child'] = $this->sortBy($this->child_menu[$menu['id']]['child'],'order');
+                $this->child_menu[$menu['id']]['child'] = $this->sortBy($this->child_menu[$menu['id']]['child'], 'order');
                 $this->menu[$index]['child'] = $this->child_menu[$menu['id']]['child'];
             }
         }
 
-        $this->menu = $this->sortBy($this->menu,'order');
+        $this->menu = $this->sortBy($this->menu, 'order');
         $this->exclude_id = array_values($this->exclude_id);
 
         foreach ($this->menu as $index => $menu) {
@@ -61,5 +61,10 @@ class MenuController extends Controller
     {
         $this->getMenu();
         return $this->menu;
+    }
+
+    public function getFullMenu()
+    {
+        return Menu::orderBy('id', 'asc')->get();
     }
 }

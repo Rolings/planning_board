@@ -4,6 +4,7 @@
         <div class="menu-list-control"></div>
         <div>
             <ul class="menu-list">
+                <li  class="menu-list-item title"></li>
                 <li class="menu-list-item" v-for="menu in menus">
                     <div class="menu-item-title">
                         <label>{{ menu.title }}</label>
@@ -42,7 +43,7 @@
             getMenu() {
                 let currentObj = this;
                 window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-                this.axios.post(window.base + '/api/get-menu')
+                this.axios.post(window.base + '/api/get-full-menu')
                     .then(response => {
                         this.menus = response.data;
                     }).catch(function (error) {
