@@ -1,5 +1,5 @@
 <template>
-    <div v-html="">wefwef</div>
+    <div v-html="">Dashboard component</div>
 </template>
 
 <script>

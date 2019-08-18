@@ -1,5 +1,5 @@
 <template>
-    <sidebar-menu :menu="menu"/>
+<sidebar-menu @toggle-collapse="onToggleCollapse" @item-click="onItemClick" :menu="menu"/>
 </template>
 <script>
     import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
@@ -32,6 +32,12 @@
                     }).catch(function (error) {
                     currentObj.output = error;
                 });
+            },
+            onToggleCollapse(collapsed) {
+                this.$emit('onToggleCollapse', {collapsed:collapsed});
+            },
+            onItemClick(event, item) {
+                this.$emit('onItemClick', {event:event,item:item})
             }
         }
 
