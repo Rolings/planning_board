@@ -1,55 +1,38 @@
 <template>
     <div>
         <div class="sidebar-block">
-            <SidebarMenu @onItemClick="getItemData"></SidebarMenu>
+            <SidebarMenu @onItemClick="getItemMenu"></SidebarMenu>
         </div>
-        <div class="content-block" :is="currentComponent">
-        </div>
+        <div class="content-block" :is="currentComponent"></div>
     </div>
 </template>
 <script>
-    import SidebarMenu from '../components/SidebarMenuComponent';
-    import Dashboard from '../components/dashboard/DashboardComponent';
-    import Menu from './setting/MenuComponents';
-    import Setting from '../components/setting/SettingComponent';
-    import Page from '../components/page/PageComponent';
-    import User from '../components/user/UserComponent';
-    import System from '../components/setting/SystemComponent';
-    import Permissions from '../components/setting/PermissionsComponent';
-
+    // Load components
     let components = {
-        'SidebarMenu': SidebarMenu,
-        'contentBlock': Dashboard,
-        'dashboard': Dashboard,
-        'setting': Setting,
-        'menus': Menu,
-        'page': Page,
-        'user': User,
-        'system': System,
-        'permissions': Permissions,
+        'SidebarMenu': () => import('../components/SidebarMenuComponent'),
+        'dashboard': () => import('../components/dashboard/DashboardComponent'),
+        'setting': () => import('./setting/SettingComponent'),
+        'menus': () => import('../components/setting/MenuComponents'),
+        'page': () => import('../components/page/PageComponent'),
+        'user': () => import('../components/user/UserComponent'),
+        'system': () => import('../components/setting/SystemComponent'),
+        'permissions': () => import('../components/setting/PermissionsComponent'),
     };
-    let components_list = Object.keys(components);
-    let currentPath = document.URL;
-    let currentUrl = currentPath.replace('https:', "").replace('http:', "").replace(window.base, "").split('/');
+
+    // Create array keys from components object
+    let components_name_list = Object.keys(components);
+
+    let currentUrl = document.URL.replace('https:', "").replace('http:', "").replace(window.base, "").split('/');
     currentUrl = currentUrl[currentUrl.length - 1];
-    if (!components_list.includes(currentUrl)) {
+    if (!components_name_list.includes(currentUrl))
         currentUrl = 'Dashboard';
-    }
     export default {
         name: 'UserAccountComponent',
         components: components,
         data() {
             return {
-                menu: [
-                    {
-                        href: '/',
-                        title: 'Dashboard',
-                        icon: 'fa fa-list'
-                    }
-                ],
-                componentsArray: components_list,
+                componentsArray: components_name_list,
                 currentComponent: currentUrl,
-
             };
         },
         mounted() {
@@ -70,10 +53,7 @@
                     currentObj.output = error;
                 });
             },
-            onToggleCollapse(collapsed) {
-                console.log(collapsed)
-            },
-            getItemData(data) {
+            getItemMenu(data) {
                 let url = data.event.target.baseURI.replace('https:', "").replace('http:', "").replace(window.base, "").split('/');
                 let select_menu = url[url.length - 1];
                 if (this.componentsArray.includes(select_menu)) {

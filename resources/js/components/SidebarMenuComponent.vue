@@ -40,7 +40,6 @@
                 this.$emit('onItemClick', {event:event,item:item})
             }
         }
-
     };
 </script>
 
