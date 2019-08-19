@@ -1,9 +1,13 @@
 <template>
     <div>
-        <h1 v-html="">Menu component</h1>
-        <div class="menu-list-control"></div>
-        <div>
-            <ul class="menu-list">
+        <div class="menu-control">
+            <span class="button">Edit</span>
+            <span class="button">Edit</span>
+            <span class="button">Edit</span>
+            <span class="button">Edit</span>
+        </div>
+        <div class="menu-list">
+            <ul>
                 <li class="title-menu menu-list-item">
                     <div class="menu-item-title">
                         <label>Name</label>

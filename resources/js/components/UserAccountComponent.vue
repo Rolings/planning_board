@@ -1,8 +1,7 @@
 <template>
     <div>
-        <div class="sidebar-block">
-            <SidebarMenu @onItemClick="getItemMenu"></SidebarMenu>
-        </div>
+        <div class="head-bar-block"><HeadbarMenu></HeadbarMenu></div>
+        <div class="sidebar-block"><SidebarMenu @onItemClick="getItemMenu"></SidebarMenu></div>
         <div class="content-block" :is="currentComponent"></div>
     </div>
 </template>
@@ -10,19 +9,20 @@
     // Load components
     let components = {
         'SidebarMenu': () => import('../components/SidebarMenuComponent'),
+        'HeadbarMenu': () => import('../components/HeadbarComponent'),
         'dashboard': () => import('../components/dashboard/DashboardComponent'),
         'setting': () => import('./setting/SettingComponent'),
         'menus': () => import('../components/setting/MenuComponents'),
         'page': () => import('../components/page/PageComponent'),
         'user': () => import('../components/user/UserComponent'),
         'system': () => import('../components/setting/SystemComponent'),
-        'permissions': () => import('../components/setting/PermissionsComponent'),
+        'permissions': () => import('../components/setting/PermissionsComponent')
     };
 
     // Create array keys from components object
     let components_name_list = Object.keys(components);
 
-    let currentUrl = document.URL.replace('https:', "").replace('http:', "").replace(window.base, "").split('/');
+    let currentUrl = document.URL.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
     currentUrl = currentUrl[currentUrl.length - 1];
     if (!components_name_list.includes(currentUrl))
         currentUrl = 'Dashboard';
@@ -32,7 +32,7 @@
         data() {
             return {
                 componentsArray: components_name_list,
-                currentComponent: currentUrl,
+                currentComponent: currentUrl
             };
         },
         mounted() {
@@ -43,18 +43,16 @@
                 let currentObj = this;
                 window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
                 this.axios.get(window.base + '/api/auth/check-auth')
-                    .then(function (response) {
-                        if (response) {
-                            if (response.data.error) {
-                                location.href = '/';
-                            }
+                    .then(response => {
+                        if (response.data.error) {
+                            location.href = '/';
                         }
                     }).catch(function (error) {
                     currentObj.output = error;
                 });
             },
             getItemMenu(data) {
-                let url = data.event.target.baseURI.replace('https:', "").replace('http:', "").replace(window.base, "").split('/');
+                let url = data.event.target.baseURI.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
                 let select_menu = url[url.length - 1];
                 if (this.componentsArray.includes(select_menu)) {
                     this.currentComponent = select_menu;
