@@ -65,6 +65,6 @@ class MenuController extends Controller
 
     public function getFullMenu()
     {
-        return Menu::orderBy('id', 'asc')->get();
+        return Menu::orderBy('id', 'asc')->get()->toArray();
     }
 }

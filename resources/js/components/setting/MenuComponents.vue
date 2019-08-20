@@ -1,35 +1,23 @@
 <template>
     <div>
-        <div class="menu-control">
-            <span class="button">Edit</span>
-            <span class="button">Edit</span>
-            <span class="button">Edit</span>
-            <span class="button">Edit</span>
-        </div>
         <div class="menu-list">
-            <ul>
-                <li class="title-menu menu-list-item">
-                    <div class="menu-item-title">
-                        <label>Name</label>
-                    </div>
-                </li>
-                <li class="menu-list-item" v-for="menu in menus">
-                    <div class="menu-item-title">
-                        <label>{{ menu.title }}</label>
-                    </div>
-                    <div class="menu-item-action">
-                        <ul>
-                            <li>
-                                <span class="menu-item-action-button">Edit</span>
-                            </li>
-                            <li>
-                                <span class="menu-item-action-button">Delete</span>
-                            </li>
-                        </ul>
-                    </div>
+
+            <ul class="demo-list-three mdl-list">
+                <li v-for="( menu, index ) in menus" class="mdl-list__item mdl-list__item--three-line">
+                    <span class="mdl-list__item-primary-content">
+                      <i class="material-icons">menu</i>
+                      <span>{{ menu.title }}</span>
+                      <span class="mdl-list__item-text-body">
+                      </span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">create</i></a>
+                      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">delete_sweep</i></a>
+                </span>
                 </li>
             </ul>
         </div>
+
     </div>
 
 </template>
@@ -40,7 +28,7 @@
         data() {
             return {
                 menus: [
-                    {id: 1, title: 'iPhone7'},
+                    {id: 1, title: 'iPhone7'}
                 ]
             };
         },
@@ -51,7 +39,7 @@
             getMenu() {
                 let currentObj = this;
                 window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-                this.axios.post(window.base + '/api/get-full-menu')
+                this.axios.post(window.base + '/api/get-menu')
                     .then(response => {
                         this.menus = response.data;
                     }).catch(function (error) {

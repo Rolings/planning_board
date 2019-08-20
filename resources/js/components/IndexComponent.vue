@@ -42,6 +42,7 @@
                                 window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
                                 localStorage.setItem('access_token', response.data.access_token);
                                 location.href = '/admin/dashboard';
+
                             }
                         }
                     })

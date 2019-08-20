@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="head-bar-block"><HeadbarMenu></HeadbarMenu></div>
+
         <div class="sidebar-block"><SidebarMenu @onItemClick="getItemMenu"></SidebarMenu></div>
         <div class="content-block" :is="currentComponent"></div>
     </div>
@@ -9,7 +9,6 @@
     // Load components
     let components = {
         'SidebarMenu': () => import('../components/SidebarMenuComponent'),
-        'HeadbarMenu': () => import('../components/HeadbarComponent'),
         'dashboard': () => import('../components/dashboard/DashboardComponent'),
         'setting': () => import('./setting/SettingComponent'),
         'menus': () => import('../components/setting/MenuComponents'),

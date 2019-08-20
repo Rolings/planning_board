@@ -16,8 +16,7 @@ body {
 
         .v-sidebar-menu {
             background-color: #2c445a;
-            top: 50px;
-            height: 95vh;
+            height: 100vh;
 
             .vsm-dropdown > .vsm-list {
                 background-color: #2c445a;
@@ -38,12 +37,11 @@ body {
 
     .content-block {
         position: fixed;
-        top: 50px;
         left: 350px;
         display: block;
         max-width: 81%;
+        width: 80%;
         float: left;
         color: white;
-        overflow-y: auto;
     }
 }
