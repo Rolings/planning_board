@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <div class="sidebar-block"><SidebarMenu @onItemClick="getItemMenu"></SidebarMenu></div>
         <div class="content-block" :is="currentComponent"></div>
     </div>
@@ -11,7 +10,7 @@
         'SidebarMenu': () => import('../components/SidebarMenuComponent'),
         'dashboard': () => import('../components/dashboard/DashboardComponent'),
         'setting': () => import('./setting/SettingComponent'),
-        'menus': () => import('../components/setting/MenuComponents'),
+        'menus': () => import('./setting/menu/MenuComponents'),
         'page': () => import('../components/page/PageComponent'),
         'user': () => import('../components/user/UserComponent'),
         'system': () => import('../components/setting/SystemComponent'),
@@ -24,7 +23,7 @@
     let currentUrl = document.URL.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
     currentUrl = currentUrl[currentUrl.length - 1];
     if (!components_name_list.includes(currentUrl))
-        currentUrl = 'Dashboard';
+        currentUrl = 'dashboard';
     export default {
         name: 'UserAccountComponent',
         components: components,

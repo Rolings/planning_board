@@ -1,3 +1,10 @@
+.menu-control {
+    padding: 10px;
+}
+.menu-breadcrumbs{
+
+}
+
 .menu-list {
 
     padding: 10px;
@@ -8,7 +15,7 @@
             width: 100%;
 
             &:hover {
-                background-color: #00a1d2;
+                background-color: rgba(0, 161, 210, 0.27);
             }
 
             &:last-child {
@@ -19,9 +26,12 @@
                 position: relative;
                 top: 5px;
                 margin: 5px;
+                cursor: grabbing;
             }
         }
-
-
+    }
+    .list-group{
+        overflow-y: auto;
+        max-height: 100vh;
     }
 }

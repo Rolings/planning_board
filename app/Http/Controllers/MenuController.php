@@ -67,4 +67,9 @@ class MenuController extends Controller
     {
         return Menu::orderBy('id', 'asc')->get()->toArray();
     }
+
+    public function getMenuInformation(Request $request)
+    {
+        return Menu::where('id', '=', $request->post('id'))->first()->toArray();
+    }
 }

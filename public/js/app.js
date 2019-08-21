@@ -11557,7 +11557,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 // Load components
 var components = {
   'SidebarMenu': function SidebarMenu() {
@@ -11570,7 +11569,7 @@ var components = {
     return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
   },
   'menus': function menus() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/setting/MenuComponents */ "./resources/js/components/setting/MenuComponents.vue"));
+    return Promise.all(/*! import() */[__webpack_require__.e(9), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
   },
   'page': function page() {
     return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
@@ -11589,7 +11588,7 @@ var components = {
 var components_name_list = Object.keys(components);
 var currentUrl = document.URL.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
 currentUrl = currentUrl[currentUrl.length - 1];
-if (!components_name_list.includes(currentUrl)) currentUrl = 'Dashboard';
+if (!components_name_list.includes(currentUrl)) currentUrl = 'dashboard';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'UserAccountComponent',
   components: components,
