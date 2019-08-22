@@ -37,6 +37,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.21",
         "@fortawesome/free-solid-svg-icons": "^5.10.1",
         "@fortawesome/vue-fontawesome": "^0.1.6",
+        "bootstrap-vue": "^2.0.0-rc.28",
         "vue-axios": "^2.1.4",
         "vue-gtm": "^2.0.0",
         "vue-router": "^3.0.7",

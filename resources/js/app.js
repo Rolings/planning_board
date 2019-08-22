@@ -9,9 +9,12 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import BootstrapVue from "bootstrap-vue"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap-vue/dist/bootstrap-vue.css"
 library.add(faCoffee);
 
 

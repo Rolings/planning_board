@@ -1,7 +1,8 @@
 .menu-control {
     padding: 10px;
 }
-.menu-breadcrumbs{
+
+.menu-breadcrumbs {
 
 }
 
@@ -30,8 +31,16 @@
             }
         }
     }
-    .list-group{
+
+    .list-group {
         overflow-y: auto;
         max-height: 100vh;
+    }
+
+    .menu-action-form {
+
+        label {
+            color: #000;
+        }
     }
 }
