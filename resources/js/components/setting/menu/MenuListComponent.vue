@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul class="demo-list-three mdl-list">
-            <draggable :list="menus" :disabled="!enabled" class="list-group" ghost-class="ghost" :move="checkMove"
+            <draggable :list="full_menu" :disabled="!enabled" class="list-group" ghost-class="ghost" :move="checkMove"
                        @start="dragging = true" @end="dragging = false">
-                <li v-for="( menu, index ) in menus" class="mdl-list__item mdl-list__item--three-line"
+                <li v-for="( menu, index ) in full_menu" class="mdl-list__item mdl-list__item--three-line"
                     :key="menu.title">
                     <span class="mdl-list__item-primary-content">
                       <i class="material-icons">menu</i>
@@ -25,6 +25,7 @@
 
 <script>
     import {draggable} from 'vuedraggable/src/vuedraggable.js';
+
     let id = 1;
     export default {
         name: 'MenuListComponent',
@@ -33,32 +34,24 @@
 
         data() {
             return {
-                menus: [
-                    {id: 1, title: 'Load'}
-                ],
                 enabled: true,
                 dragging: false
             };
         },
         mounted() {
-            this.getMenu();
+            this.$store.dispatch('getFullMenu');
+        },
+        computed: {
+            full_menu() {
+                return this.$store.getters.full_menu;
+            },
         },
         methods: {
-            getMenu() {
-                let currentObj = this;
-                window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-                this.axios.post(window.base + '/api/get-full-menu')
-                    .then(response => {
-                        this.menus = response.data;
-                    }).catch(function (error) {
-                    currentObj.output = error;
-                });
-            },
             getInformationSelectMenu(menu_id) {
-                this.$emit('getInformationSelectMenu', {menu_id:menu_id});
+                this.$emit('getInformationSelectMenu', {menu_id: menu_id});
             },
             deleteSelectMenu(menu_id) {
-                this.$emit('deleteSelectMenu', {menu_id:menu_id});
+                this.$emit('deleteSelectMenu', {menu_id: menu_id});
                 console.log(menu_id);
             },
             add: function () {

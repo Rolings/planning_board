@@ -5,11 +5,13 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" v-model="title">
+                        <input type="text" id="title" name="title" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="parent_id">Parent ID</label>
-                        <select name="parent_id" id="parent_id"  class="form-control"></select>
+                        <select name="parent_id" id="parent_id" class="form-control">
+                            <option  v-for="( menu, index ) in full_menu" >{{ menu.title }}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="icon">Icon</label>
@@ -27,24 +29,19 @@
             </form>
         </div>
     </div>
-    
+
 </template>
 
 <script>
-  export default {
-    name: 'EditMenuComponent',
-      props:['title'],
-/*      props: {
-          menuInformation: [],
-          menus: [],
+    export default {
+        name: 'EditMenuComponent',
 
-      },*/
-      created: function () {
-          console.log('user data from parent component:')
-          console.log(this.menuInformation)
-          console.log(this.menus)
-      }
-  };
+        computed: {
+            full_menu() {
+                return this.$store.getters.full_menu;
+            },
+        },
+    };
 </script>
 
 <style scoped>

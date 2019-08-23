@@ -42,6 +42,7 @@
         "vue-gtm": "^2.0.0",
         "vue-router": "^3.0.7",
         "vue-rule-builder": "^1.1.6",
-        "vue-sidebar-menu": "^3.12.2"
+        "vue-sidebar-menu": "^3.12.2",
+        "vuex": "^3.0.1"
     }
 }
