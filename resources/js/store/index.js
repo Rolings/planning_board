@@ -4,7 +4,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
-        menu: [],
+        menu: [{
+            href: '/',
+            title: 'Dashboard',
+            icon: 'fa fa-user'
+        }],
         full_menu : []
     },
     getters: {
@@ -17,7 +21,6 @@ const store = new Vuex.Store({
             axios.post(window.base + '/api/get-menu')
                 .then((resp) => {
                     context.commit('setMenu', resp.data)
-
                 })
         },
         getFullMenu(context){

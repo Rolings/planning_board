@@ -1,17 +1,17 @@
 <template>
     <div class="container">
         <form class="login"  @submit="formSubmit">
-            <p>
+            <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="login" v-model="email" value="admin@admin.com">
-            </p>
-            <p>
+            </div>
+            <div class="form-group">
                 <label for="password">Пароль:</label>
                 <input type="password" name="password" id="password" v-model="password" value="secret">
-            </p>
-            <p class="login-submit">
+            </div>
+            <div class="form-group">
                 <button type="submit" class="login-button">Войти</button>
-            </p>
+            </div>
         </form>
     </div>
 </template>

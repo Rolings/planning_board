@@ -43,6 +43,7 @@
                 this.axios.get(window.base + '/api/auth/check-auth')
                     .then(response => {
                         if (response.data.error) {
+
                             location.href = '/';
                         }
                     }).catch(function (error) {

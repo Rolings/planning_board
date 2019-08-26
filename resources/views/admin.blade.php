@@ -1,4 +1,4 @@
-@extends('layouts.user-account-master')
+@extends('layouts.master-admin')
 @section('content')
     <user-account></user-account>
 @endsection
