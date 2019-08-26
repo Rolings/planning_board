@@ -1,18 +1,21 @@
 <template>
-    <div class="container">
-        <form class="login"  @submit="formSubmit">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="login" v-model="email" value="admin@admin.com">
+    <div class="form-container">
+        <div class="grid align__item">
+            <div class="register">
+                <h2>Sign Up</h2>
+                <form  class="form" @submit="formSubmit">
+                    <div class="form__field"  >
+                        <input type="email" name="email" id="login" v-model="email" value="admin@admin.com" class="form-control">
+                    </div>
+                    <div class="form__field">
+                        <input type="password" name="password" id="password" v-model="password" value="secret" class="form-control">
+                    </div>
+                    <div class="form__field">
+                        <button type="submit" class="btn btn-dark">Войти</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="password">Пароль:</label>
-                <input type="password" name="password" id="password" v-model="password" value="secret">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="login-button">Войти</button>
-            </div>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -41,7 +44,7 @@
                             if(response.data.status===true){
                                 window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
                                 localStorage.setItem('access_token', response.data.access_token);
-                                location.href = '/admin/dashboard';
+                            //    location.href = '/admin/dashboard';
 
                             }
                         }
@@ -56,7 +59,7 @@
                 this.axios.get(window.base+'/api/auth/check-auth').then(function (response) {
                     if (response) {
                         if(!response.data.error){
-                            location.href = '/admin/dashboard';
+                           // location.href = '/admin/dashboard';
                         }
                     }
                 }).catch(function (error) {

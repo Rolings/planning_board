@@ -11493,6 +11493,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "IndexComponent",
   mounted: function mounted() {
@@ -11516,8 +11519,7 @@ __webpack_require__.r(__webpack_exports__);
         if (response) {
           if (response.data.status === true) {
             window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
-            localStorage.setItem('access_token', response.data.access_token);
-            location.href = '/admin/dashboard';
+            localStorage.setItem('access_token', response.data.access_token); //    location.href = '/admin/dashboard';
           }
         }
       })["catch"](function (error) {
@@ -11529,8 +11531,7 @@ __webpack_require__.r(__webpack_exports__);
       window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
       this.axios.get(window.base + '/api/auth/check-auth').then(function (response) {
         if (response) {
-          if (!response.data.error) {
-            location.href = '/admin/dashboard';
+          if (!response.data.error) {// location.href = '/admin/dashboard';
           }
         }
       })["catch"](function (error) {
@@ -11599,20 +11600,9 @@ if (!components_name_list.includes(currentUrl)) currentUrl = 'dashboard';
     };
   },
   mounted: function mounted() {
-    this.checkAuth();
+    this.$store.dispatch('getAuth');
   },
   methods: {
-    checkAuth: function checkAuth() {
-      var currentObj = this;
-      window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-      this.axios.get(window.base + '/api/auth/check-auth').then(function (response) {
-        if (response.data.error) {
-          location.href = '/';
-        }
-      })["catch"](function (error) {
-        currentObj.output = error;
-      });
-    },
     getItemMenu: function getItemMenu(data) {
       var url = data.event.target.baseURI.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
       var select_menu = url[url.length - 1];
@@ -16140,7 +16130,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n.v-sidebar-menu, .v-sidebar-menu * {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.v-sidebar-menu {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: 999;\n  -webkit-transition: 0.3s width;\n  transition: 0.3s width;\n}\n.v-sidebar-menu.rtl {\n  right: 0;\n  left: inherit;\n  text-align: right;\n}\n.v-sidebar-menu > .vsm-list {\n  width: 100%;\n  height: 100%;\n  overflow: hidden auto;\n}\n.v-sidebar-menu.vsm-collapsed > .vsm-list {\n  width: calc(100% + 17px);\n  padding-right: 17px;\n}\n.v-sidebar-menu.rtl > .vsm-list {\n  direction: rtl;\n}\n.v-sidebar-menu.vsm-collapsed.rtl > .vsm-list {\n  padding-right: 0px;\n  padding-left: 17px;\n  margin-left: -17px;\n}\n.v-sidebar-menu.vsm-collapsed.rtl:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item {\n  position: relative;\n  display: block;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link {\n  line-height: 30px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.parent-active-item > .vsm-link {\n  font-weight: 600;\n}\n.v-sidebar-menu .vsm-link {\n  position: relative;\n  display: block;\n  font-size: 16px;\n  font-weight: 400;\n  padding: 10px;\n  line-height: 30px;\n  text-decoration: none;\n  z-index: 20;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n}\n.v-sidebar-menu .vsm-link[disabled] {\n  opacity: 0.4;\n  pointer-events: none;\n}\n.v-sidebar-menu .vsm-title {\n  display: block;\n  white-space: nowrap;\n}\n.v-sidebar-menu .vsm-icon {\n  float: left;\n  line-height: 30px;\n  margin-right: 10px;\n}\n.v-sidebar-menu.rtl .vsm-icon {\n  float: right;\n  margin-left: 10px;\n  margin-right: 0px;\n}\n.v-sidebar-menu .vsm-arrow {\n  width: 30px;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n  -webkit-transition: 0.3s -webkit-transform;\n  transition: 0.3s -webkit-transform;\n  transition: 0.3s transform;\n  transition: 0.3s transform, 0.3s -webkit-transform;\n}\n.v-sidebar-menu .vsm-arrow:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .vsm-arrow.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu .vsm-arrow.open-arrow {\n  -webkit-transform: translateY(-50%) rotate(90deg);\n          transform: translateY(-50%) rotate(90deg);\n}\n.v-sidebar-menu.rtl .vsm-arrow {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  padding: 5px;\n}\n.v-sidebar-menu .expand-enter-active, .v-sidebar-menu .expand-leave-active {\n  -webkit-transition: height 0.35s ease;\n  transition: height 0.35s ease;\n  overflow: hidden;\n}\n.v-sidebar-menu .expand-enter, .v-sidebar-menu .expand-leave-to {\n  height: 0 !important;\n}\n.v-sidebar-menu .slide-animation-enter-active {\n  -webkit-animation: slide-animation 0.2s;\n          animation: slide-animation 0.2s;\n}\n.v-sidebar-menu .slide-animation-leave-active {\n  animation: slide-animation 0.2s reverse;\n}\n@-webkit-keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n@keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n.v-sidebar-menu .vsm-header {\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px;\n  white-space: nowrap;\n  text-transform: uppercase;\n}\n.v-sidebar-menu .vsm-badge {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  padding: 0px 6px;\n  font-size: 12px;\n  border-radius: 3px;\n  height: 20px;\n  line-height: 20px;\n  font-weight: 600;\n  text-transform: uppercase;\n}\n.v-sidebar-menu.rtl .vsm-badge {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .collapse-btn {\n  display: block;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  height: 50px;\n  cursor: pointer;\n  border: none;\n  width: 100%;\n}\n.v-sidebar-menu .collapse-btn:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .collapse-btn.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu {\n  background-color: #2a2a2e;\n}\n.v-sidebar-menu .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.vsm-default .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  background-color: #36363b;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu .vsm-header {\n  color: rgba(255, 255, 255, 0.7);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .collapse-btn {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.white-theme {\n  background-color: #2c445a;\n}\n.v-sidebar-menu.white-theme .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #262626;\n  background-color: #bbc5d6;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #262626;\n}\n.v-sidebar-menu.white-theme.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-link:hover {\n  color: #262626;\n  background-color: #243749;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list {\n  background-color: #2c445a;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #262626;\n  background-color: #243749;\n}\n.v-sidebar-menu.white-theme .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme .vsm-header {\n  color: rgba(38, 38, 38, 0.7);\n}\n.v-sidebar-menu.white-theme .vsm-badge.default-badge {\n  color: #262626;\n  background-color: #e0e0e0;\n}\n.v-sidebar-menu.white-theme .collapse-btn {\n  color: #262626;\n  background-color: #243749;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.v-sidebar-menu, .v-sidebar-menu * {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.v-sidebar-menu {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: 999;\n  -webkit-transition: 0.3s width;\n  transition: 0.3s width;\n}\n.v-sidebar-menu.rtl {\n  right: 0;\n  left: inherit;\n  text-align: right;\n}\n.v-sidebar-menu > .vsm-list {\n  width: 100%;\n  height: 100%;\n  overflow: hidden auto;\n}\n.v-sidebar-menu.vsm-collapsed > .vsm-list {\n  width: calc(100% + 17px);\n  padding-right: 17px;\n}\n.v-sidebar-menu.rtl > .vsm-list {\n  direction: rtl;\n}\n.v-sidebar-menu.vsm-collapsed.rtl > .vsm-list {\n  padding-right: 0px;\n  padding-left: 17px;\n  margin-left: -17px;\n}\n.v-sidebar-menu.vsm-collapsed.rtl:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item {\n  position: relative;\n  display: block;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link {\n  line-height: 30px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.parent-active-item > .vsm-link {\n  font-weight: 600;\n}\n.v-sidebar-menu .vsm-link {\n  position: relative;\n  display: block;\n  font-size: 16px;\n  font-weight: 400;\n  padding: 10px;\n  line-height: 30px;\n  text-decoration: none;\n  z-index: 20;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n}\n.v-sidebar-menu .vsm-link[disabled] {\n  opacity: 0.4;\n  pointer-events: none;\n}\n.v-sidebar-menu .vsm-title {\n  display: block;\n  white-space: nowrap;\n}\n.v-sidebar-menu .vsm-icon {\n  float: left;\n  line-height: 30px;\n  margin-right: 10px;\n}\n.v-sidebar-menu.rtl .vsm-icon {\n  float: right;\n  margin-left: 10px;\n  margin-right: 0px;\n}\n.v-sidebar-menu .vsm-arrow {\n  width: 30px;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n  -webkit-transition: 0.3s -webkit-transform;\n  transition: 0.3s -webkit-transform;\n  transition: 0.3s transform;\n  transition: 0.3s transform, 0.3s -webkit-transform;\n}\n.v-sidebar-menu .vsm-arrow:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .vsm-arrow.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu .vsm-arrow.open-arrow {\n  -webkit-transform: translateY(-50%) rotate(90deg);\n          transform: translateY(-50%) rotate(90deg);\n}\n.v-sidebar-menu.rtl .vsm-arrow {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  padding: 5px;\n}\n.v-sidebar-menu .expand-enter-active, .v-sidebar-menu .expand-leave-active {\n  -webkit-transition: height 0.35s ease;\n  transition: height 0.35s ease;\n  overflow: hidden;\n}\n.v-sidebar-menu .expand-enter, .v-sidebar-menu .expand-leave-to {\n  height: 0 !important;\n}\n.v-sidebar-menu .slide-animation-enter-active {\n  -webkit-animation: slide-animation 0.2s;\n          animation: slide-animation 0.2s;\n}\n.v-sidebar-menu .slide-animation-leave-active {\n  animation: slide-animation 0.2s reverse;\n}\n@-webkit-keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n@keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n.v-sidebar-menu .vsm-header {\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px;\n  white-space: nowrap;\n  text-transform: uppercase;\n}\n.v-sidebar-menu .vsm-badge {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  padding: 0px 6px;\n  font-size: 12px;\n  border-radius: 3px;\n  height: 20px;\n  line-height: 20px;\n  font-weight: 600;\n  text-transform: uppercase;\n}\n.v-sidebar-menu.rtl .vsm-badge {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .collapse-btn {\n  display: block;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  height: 50px;\n  cursor: pointer;\n  border: none;\n  width: 100%;\n}\n.v-sidebar-menu .collapse-btn:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .collapse-btn.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu {\n  background-color: #2a2a2e;\n}\n.v-sidebar-menu .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.vsm-default .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  background-color: #36363b;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu .vsm-header {\n  color: rgba(255, 255, 255, 0.7);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .collapse-btn {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.white-theme {\n  background-color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #262626;\n  background-color: #bbc5d6;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #262626;\n}\n.v-sidebar-menu.white-theme.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-link:hover {\n  color: #262626;\n  background-color: #f2f2f2;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list {\n  background-color: #e3e3e3;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #262626;\n  background-color: #f2f2f2;\n}\n.v-sidebar-menu.white-theme .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme .vsm-header {\n  color: rgba(38, 38, 38, 0.7);\n}\n.v-sidebar-menu.white-theme .vsm-badge.default-badge {\n  color: #262626;\n  background-color: #e0e0e0;\n}\n.v-sidebar-menu.white-theme .collapse-btn {\n  color: #262626;\n  background-color: #f2f2f2;\n}", ""]);
 
 
 /***/ }),
@@ -48738,69 +48728,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("form", { staticClass: "login", on: { submit: _vm.formSubmit } }, [
-      _c("p", [
-        _c("label", { attrs: { for: "email" } }, [_vm._v("Email:")]),
+  return _c("div", { staticClass: "form-container" }, [
+    _c("div", { staticClass: "grid align__item" }, [
+      _c("div", { staticClass: "register" }, [
+        _c("h2", [_vm._v("Sign Up")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.email,
-              expression: "email"
-            }
-          ],
-          attrs: {
-            type: "email",
-            name: "email",
-            id: "login",
-            value: "admin@admin.com"
-          },
-          domProps: { value: _vm.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("form", { staticClass: "form", on: { submit: _vm.formSubmit } }, [
+          _c("div", { staticClass: "form__field" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "email",
+                name: "email",
+                id: "login",
+                value: "admin@admin.com"
+              },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
               }
-              _vm.email = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _c("label", { attrs: { for: "password" } }, [_vm._v("Пароль:")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.password,
-              expression: "password"
-            }
-          ],
-          attrs: {
-            type: "password",
-            name: "password",
-            id: "password",
-            value: "secret"
-          },
-          domProps: { value: _vm.password },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__field" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                name: "password",
+                id: "password",
+                value: "secret"
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
               }
-              _vm.password = $event.target.value
-            }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ])
     ])
   ])
 }
@@ -48809,8 +48803,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "login-submit" }, [
-      _c("button", { staticClass: "login-button", attrs: { type: "submit" } }, [
+    return _c("div", { staticClass: "form__field" }, [
+      _c("button", { staticClass: "btn btn-dark", attrs: { type: "submit" } }, [
         _vm._v("Войти")
       ])
     ])
@@ -65424,8 +65418,13 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
-    menu: [],
-    full_menu: []
+    menu: [{
+      href: '/',
+      title: 'Dashboard',
+      icon: 'fa fa-user'
+    }],
+    full_menu: [],
+    auth: false
   },
   getters: {
     menu: function menu(state) {
@@ -65433,6 +65432,20 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     full_menu: function full_menu(state) {
       return state.full_menu;
+    },
+    auth: function auth(state) {
+      return state.auth;
+    }
+  },
+  mutations: {
+    setMenu: function setMenu(state, value) {
+      state.menu = value;
+    },
+    setFullMenu: function setFullMenu(state, value) {
+      state.full_menu = value;
+    },
+    setAuth: function setAuth(state, value) {
+      state.auth = value;
     }
   },
   actions: {
@@ -65447,14 +65460,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       axios.post(window.base + '/api/get-full-menu').then(function (resp) {
         context.commit('setFullMenu', resp.data);
       });
-    }
-  },
-  mutations: {
-    setMenu: function setMenu(state, value) {
-      state.menu = value;
     },
-    setFullMenu: function setFullMenu(state, value) {
-      state.full_menu = value;
+    getAuth: function getAuth(context) {
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.get(window.base + '/api/auth/check-auth').then(function (resp) {
+        if (resp.data.error) {//     location.href = '/';
+        }
+      });
     }
   }
 });
@@ -65491,9 +65503,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
-module.exports = __webpack_require__(/*! D:\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
+module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

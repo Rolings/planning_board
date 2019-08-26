@@ -34,22 +34,9 @@
             };
         },
         mounted() {
-            this.checkAuth();
+            this.$store.dispatch('getAuth');
         },
         methods: {
-            checkAuth() {
-                let currentObj = this;
-                window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-                this.axios.get(window.base + '/api/auth/check-auth')
-                    .then(response => {
-                        if (response.data.error) {
-
-                            location.href = '/';
-                        }
-                    }).catch(function (error) {
-                    currentObj.output = error;
-                });
-            },
             getItemMenu(data) {
                 let url = data.event.target.baseURI.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
                 let select_menu = url[url.length - 1];

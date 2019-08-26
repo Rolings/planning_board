@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
+use App\Package\JWT;
 
 class AuthController extends Controller
 {
@@ -30,23 +31,27 @@ class AuthController extends Controller
     {
         $userdata = request(['email', 'password']);
         $validator = Validator::make($userdata, [
-            'email' => 'required',
+            'email' => 'required|email|max:255',
             'password' => 'required'
         ]);
+
+
         if ($validator->fails())
             return response()->json(['error' => 'Not valid'], 401);
-        $user = Auth::attempt($userdata);
 
+
+        $user = Auth::attempt($userdata);
         if (!$user)
             return response()->json(['error' => 'Unauthorized'], 401);
-        $token = JWTAuth::fromUser(Auth::user());
 
-        return $this->respondWithToken($token);
+        $token = JWT::instance()->generateKey(Auth::user())->key();
+
+        return $token;
     }
 
     public function checkAuth()
     {
-        return response()->json(auth()->user());
+        return response()->json(Auth::user());
     }
 
     public function logout()

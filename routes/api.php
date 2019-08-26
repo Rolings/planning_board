@@ -18,12 +18,12 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('check-auth', 'AuthController@checkAuth');
 });
 
-Route::group(['middleware' => 'jwt.auth', 'prefix' => 'auth'], function () {
+Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function () {
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
 
-Route::group(['middleware' => 'jwt.auth'], function () {
+Route::group(['middleware' => 'jwt'], function () {
     Route::post('get-menu', 'MenuController@index');
     Route::post('get-full-menu', 'MenuController@getFullMenu');
     Route::post('get-menu-information', 'MenuController@getMenuInformation');
