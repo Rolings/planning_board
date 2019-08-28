@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div class="sidebar-block"><SidebarMenu @onItemClick="getItemMenu"></SidebarMenu></div>
+        <div class="sidebar-block">
+            <SidebarMenu @onItemClick="getItemMenu"></SidebarMenu>
+        </div>
         <div class="content-block" :is="currentComponent"></div>
     </div>
 </template>
@@ -43,6 +45,8 @@
                 if (this.componentsArray.includes(select_menu)) {
                     this.currentComponent = select_menu;
                 }
+                if (select_menu === 'logout')
+                    this.$store.dispatch('logout');
             }
         }
     };

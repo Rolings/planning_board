@@ -64,6 +64,10 @@ const store = new Vuex.Store({
                 }).catch((error) => {
                location.href = '/';
             });
+        },
+        logout(context){
+            localStorage.removeItem('access_token');
+            location.href = '/';
         }
     },
 

@@ -41,9 +41,9 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function auth(Request $request)
+    public function auth()
     {
-        return JWT::instance()->auth($request);
+        return JWT::instance()->getToken()->auth();
     }
 
 

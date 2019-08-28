@@ -10,11 +10,7 @@ class JwtCustomMiddleware
 {
     public function handle($request, Closure $next)
     {
-        try {
-            JWT::instance()->key();
-        } catch (Exception $e) {
-
-        }
+        JWT::instance()->getToken()->auth();
         return $next($request);
     }
 

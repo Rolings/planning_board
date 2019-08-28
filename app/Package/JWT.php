@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Package;
+
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,6 +11,7 @@ class JWT
     private static $instance = null;
 
     private $secret_key = 'abC123!';
+    protected $request;
 
     public static function instance()
     {
@@ -19,27 +21,38 @@ class JWT
         return self::$instance;
     }
 
-
-    public function auth(Request $request)
+    function __construct()
     {
-        $headers = $request->header('Authorization');
-        if(empty($headers))
+    dump(Request::class);
+        $this->request = Request::class;
+    }
+
+    public function getToken()
+    {
+        $headers = $this->request->header('Authorization');
+        if (empty($headers))
             return response()->json(['error' => 'Token not found'], 401);
 
-        if(strpos($headers, '.')===false)
+        if (strpos($headers, '.') === false)
             return response()->json(['error' => 'Token not validation'], 401);
 
-        $token = trim(str_replace('bearer ','',$headers));
-        $token = explode('.', $token);
+        $this->token = trim(str_replace('bearer ', '', $headers));
+        return $this;
+    }
+
+
+    public function auth()
+    {
+        $token = explode('.', $this->token);
         $header = $token[0];
         $payload = $token[1];
         $new_signature = base64_encode(hash_hmac('sha256', $header . "." . $payload, $this->secret_key, true));
         $test_token = $header . "." . $payload . "." . $new_signature;
-        $str =  base64_decode($payload);
+        $str = base64_decode($payload);
 
-        if(!empty($str)){
+        if (!empty($str)) {
             preg_match('#\{(.*?)\}#', $str, $match);
-            if(is_array($match) &&  isset($match[0])  && is_string($match[0])){
+            if (is_array($match) && isset($match[0]) && is_string($match[0])) {
                 $user_data = json_decode($match[0]);
             }
         }
@@ -61,9 +74,9 @@ class JWT
     {
 
         $header = response()->json(['typ' => 'JWT', 'alg' => 'HS256']);
-        $payload = response()->json(['user_id' => $user->id,'name'=>$user->name]);
+        $payload = response()->json(['user_id' => $user->id, 'name' => $user->name]);
 
-        $header =  base64_encode($header);
+        $header = base64_encode($header);
         $payload = base64_encode($payload);
         $signature = base64_encode(hash_hmac('sha256', $header . "." . $payload, $this->secret_key, true));
         $this->token = $header . "." . $payload . "." . $signature;
