@@ -12,21 +12,10 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth')->except(['login']);
+        $this->middleware('jwt')->except(['login']);
     }
 
-    public function register(Request $request)
-    {
-        $user = User::create([
-            'email'    => $request->email,
-            'password' => $request->password,
-        ]);
-
-        $token = auth()->login($user);
-
-        return $this->respondWithToken($token);
-    }
-    public function login()
+    public function login(Request $request)
     {
         $userdata = request(['email', 'password']);
         $validator = Validator::make($userdata, [
@@ -34,10 +23,8 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-
         if ($validator->fails())
             return response()->json(['error' => 'Not valid'], 401);
-
 
         $user = Auth::attempt($userdata);
         if (!$user)
@@ -48,29 +35,16 @@ class AuthController extends Controller
         return $token;
     }
 
-    public function checkAuth()
-    {
-        return response()->json(Auth::user());
-    }
-
     public function logout()
     {
         auth()->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function refresh()
+    public function auth(Request $request)
     {
-        return $this->respondWithToken(auth()->refresh());
+        return JWT::instance()->auth($request);
     }
 
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'status' => true
-        ]);
-    }
+
 }

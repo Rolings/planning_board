@@ -10,12 +10,13 @@ const store = new Vuex.Store({
             icon: 'fa fa-user'
         }],
         full_menu: [],
-        auth : false
+        auth: false
     },
     getters: {
         menu: state => state.menu,
         full_menu: state => state.full_menu,
         auth: state => state.auth,
+        login: state => state.login,
     },
     mutations: {
         setMenu(state, value) {
@@ -26,6 +27,9 @@ const store = new Vuex.Store({
         },
         setAuth(state, value) {
             state.auth = value
+        },
+        setlogin(state, value) {
+            state.login = value
         },
     },
     actions: {
@@ -43,14 +47,23 @@ const store = new Vuex.Store({
                     context.commit('setFullMenu', resp.data)
                 })
         },
-        getAuth(context){
+        getAuth(context) {
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-            axios.get(window.base + '/api/auth/check-auth')
+            axios.get(window.base + '/api/auth/check')
                 .then((resp) => {
-                    if (resp.data.error) {
-                   //     location.href = '/';
-                    }
-                })
+
+                }).catch((error) => {
+                location.href = '/';
+            });
+        },
+        login(context, {email, password}) {
+            axios.post(window.base + '/api/auth/login', {email, password})
+                .then((resp) => {
+                    localStorage.setItem('access_token', resp.data.access_token);
+                    location.href = '/admin/dashboard';
+                }).catch((error) => {
+               location.href = '/';
+            });
         }
     },
 

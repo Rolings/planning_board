@@ -3,7 +3,7 @@
         <div class="grid align__item">
             <div class="register">
                 <h2>Sign Up</h2>
-                <form  class="form" @submit="formSubmit">
+                <form  class="form" @submit="login">
                     <div class="form__field"  >
                         <input type="email" name="email" id="login" v-model="email" value="admin@admin.com" class="form-control">
                     </div>
@@ -23,8 +23,9 @@
     export default {
         name: "IndexComponent",
         mounted() {
-            console.log('Component mounted.');
-            this.checkAuth();
+            if(!!localStorage.getItem('access_token')){
+                this.$store.dispatch('getAuth');
+            }
         },
         data() {
             return {
@@ -33,39 +34,14 @@
             };
         },
         methods: {
-            formSubmit(e) {
+            login(e) {
                 e.preventDefault();
-                let currentObj = this;
-                this.axios.post(window.base+'/api/auth', {
+                this.$store.dispatch('login',{
                     email: this.email,
                     password: this.password
-                }).then(function (response) {
-                        if(response){
-                            if(response.data.status===true){
-                                window.axios.defaults.headers.common['Authorization'] = "bearer " + response.data.access_token;
-                                localStorage.setItem('access_token', response.data.access_token);
-                            //    location.href = '/admin/dashboard';
-
-                            }
-                        }
-                    })
-                    .catch(function (error) {
-                        currentObj.output = error;
-                    });
-            },
-            checkAuth(){
-                let currentObj = this;
-                window.axios.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem('access_token');
-                this.axios.get(window.base+'/api/auth/check-auth').then(function (response) {
-                    if (response) {
-                        if(!response.data.error){
-                           // location.href = '/admin/dashboard';
-                        }
-                    }
-                }).catch(function (error) {
-                    currentObj.output = error;
                 });
-            }
+            },
+
         }
     }
 </script>
