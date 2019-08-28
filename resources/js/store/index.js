@@ -51,7 +51,8 @@ const store = new Vuex.Store({
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
             axios.get(window.base + '/api/auth/check')
                 .then((resp) => {
-
+                    console.log( resp.status);
+                  //  location.href = '/admin/dashboard';
                 }).catch((error) => {
                 location.href = '/';
             });

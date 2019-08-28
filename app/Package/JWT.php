@@ -7,11 +7,9 @@ use App\Models\User;
 
 class JWT
 {
-    protected $token;
+    public $token;
     private static $instance = null;
-
-    private $secret_key = 'abC123!';
-    protected $request;
+    public $secret_key = 'abC123!';
 
     public static function instance()
     {
@@ -21,22 +19,20 @@ class JWT
         return self::$instance;
     }
 
-    function __construct()
+    public function getToken($request)
     {
-    dump(Request::class);
-        $this->request = Request::class;
-    }
 
-    public function getToken()
-    {
-        $headers = $this->request->header('Authorization');
-        if (empty($headers))
-            return response()->json(['error' => 'Token not found'], 401);
+        if (!empty($request->header('Authorization'))) {
+            $headers = $request->header('Authorization');
+            if (empty($headers))
+                return response()->json(['error' => 'Token not found'], 401);
 
-        if (strpos($headers, '.') === false)
-            return response()->json(['error' => 'Token not validation'], 401);
+            if (strpos($headers, '.') === false)
+                return response()->json(['error' => 'Token not validation'], 401);
+            $this->token = trim(str_replace('bearer ', '', $headers));
+        }
 
-        $this->token = trim(str_replace('bearer ', '', $headers));
+
         return $this;
     }
 
@@ -66,7 +62,7 @@ class JWT
 
         return response()->json([
             'user' => $user,
-        ]);
+        ],200);
 
     }
 
@@ -74,7 +70,12 @@ class JWT
     {
 
         $header = response()->json(['typ' => 'JWT', 'alg' => 'HS256']);
-        $payload = response()->json(['user_id' => $user->id, 'name' => $user->name]);
+        $payload = response()->json(
+            [
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'datetime' => date("Y-m-d H:i:s")
+            ]);
 
         $header = base64_encode($header);
         $payload = base64_encode($payload);

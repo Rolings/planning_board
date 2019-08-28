@@ -10,7 +10,9 @@ class JwtCustomMiddleware
 {
     public function handle($request, Closure $next)
     {
-        JWT::instance()->getToken()->auth();
+        if(!empty($request->header('Authorization'))){
+            JWT::instance()->getToken($request);
+        }
         return $next($request);
     }
 

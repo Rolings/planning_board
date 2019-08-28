@@ -19,6 +19,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function () {
+
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

@@ -11,7 +11,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('jwt')->except(['index']);
+        $this->middleware('jwt');
     }
 
     public function index()

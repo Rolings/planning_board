@@ -15,7 +15,7 @@ class AuthController extends Controller
         $this->middleware('jwt')->except(['login']);
     }
 
-    public function login(Request $request)
+    public function login()
     {
         $userdata = request(['email', 'password']);
         $validator = Validator::make($userdata, [
@@ -41,9 +41,9 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function auth()
+    public function auth(Request $request)
     {
-        return JWT::instance()->getToken()->auth();
+        return JWT::instance()->getToken($request)->auth();
     }
 
 
