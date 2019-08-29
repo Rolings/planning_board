@@ -2,8 +2,10 @@ import {SidebarMenu} from 'vue-sidebar-menu/src';
 
 require('./bootstrap');
 window.Vue = require('vue');
+Vue.use(require('vue-cookies'));
 
 import Vue from 'vue'
+import VueCookies from 'vue-cookies';
 import VueSidebarMenu from 'vue-sidebar-menu'
 import VueRouter from 'vue-router';
 import routes from './routes';
@@ -18,9 +20,14 @@ import store from"./store"
 library.add(faCoffee);
 
 
+
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(VueSidebarMenu);
+Vue.use(VueCookies);
+// set default config
+VueCookies.config('7d');
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);
 Vue.component('user-account', require('./components/UserAccountComponent.vue').default);

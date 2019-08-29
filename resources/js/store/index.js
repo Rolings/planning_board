@@ -47,28 +47,38 @@ const store = new Vuex.Store({
                     context.commit('setFullMenu', resp.data)
                 })
         },
-        getAuth(context) {
+        getAuth(context,{current}) {
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-            axios.get(window.base + '/api/auth/check')
+            axios.post(window.base + '/api/auth/check')
                 .then((resp) => {
-                    console.log( resp.status);
-                  //  location.href = '/admin/dashboard';
+                    if (current.parh === '/') {
+                        location.href = '/admin/dashboard';
+                    }
                 }).catch((error) => {
-                location.href = '/';
+                if (current.parh.indexOf('/admin') + 1) {
+                    location.href = '/';
+                }
+
             });
         },
         login(context, {email, password}) {
             axios.post(window.base + '/api/auth/login', {email, password})
                 .then((resp) => {
+                    document.cookie = "Authorization="+resp.data.access_token+";expires=" + resp.data.expires_in;
                     localStorage.setItem('access_token', resp.data.access_token);
                     location.href = '/admin/dashboard';
-                }).catch((error) => {
-               location.href = '/';
-            });
+                });
         },
         logout(context){
-            localStorage.removeItem('access_token');
-            location.href = '/';
+            axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            axios.post(window.base + '/api/auth/logout')
+                .then((resp) => {
+                    localStorage.removeItem('access_token');
+                    location.href = '/';
+                }).catch((error) => {
+                location.href = '/';
+            });
+
         }
     },
 

@@ -11500,7 +11500,9 @@ __webpack_require__.r(__webpack_exports__);
   name: "IndexComponent",
   mounted: function mounted() {
     if (!!localStorage.getItem('access_token')) {
-      this.$store.dispatch('getAuth');
+      this.$store.dispatch('getAuth', {
+        current: this.$router.currentRoute
+      });
     }
   },
   data: function data() {
@@ -11581,7 +11583,9 @@ if (!components_name_list.includes(currentUrl)) currentUrl = 'dashboard';
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch('getAuth');
+    this.$store.dispatch('getAuth', {
+      current: this.$router.currentRoute
+    });
   },
   methods: {
     getItemMenu: function getItemMenu(data) {
@@ -16113,7 +16117,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(/*! ../../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n.v-sidebar-menu, .v-sidebar-menu * {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.v-sidebar-menu {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: 999;\n  -webkit-transition: 0.3s width;\n  transition: 0.3s width;\n}\n.v-sidebar-menu.rtl {\n  right: 0;\n  left: inherit;\n  text-align: right;\n}\n.v-sidebar-menu > .vsm-list {\n  width: 100%;\n  height: 100%;\n  overflow: hidden auto;\n}\n.v-sidebar-menu.vsm-collapsed > .vsm-list {\n  width: calc(100% + 17px);\n  padding-right: 17px;\n}\n.v-sidebar-menu.rtl > .vsm-list {\n  direction: rtl;\n}\n.v-sidebar-menu.vsm-collapsed.rtl > .vsm-list {\n  padding-right: 0px;\n  padding-left: 17px;\n  margin-left: -17px;\n}\n.v-sidebar-menu.vsm-collapsed.rtl:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item {\n  position: relative;\n  display: block;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link {\n  line-height: 30px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.parent-active-item > .vsm-link {\n  font-weight: 600;\n}\n.v-sidebar-menu .vsm-link {\n  position: relative;\n  display: block;\n  font-size: 16px;\n  font-weight: 400;\n  padding: 10px;\n  line-height: 30px;\n  text-decoration: none;\n  z-index: 20;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n}\n.v-sidebar-menu .vsm-link[disabled] {\n  opacity: 0.4;\n  pointer-events: none;\n}\n.v-sidebar-menu .vsm-title {\n  display: block;\n  white-space: nowrap;\n}\n.v-sidebar-menu .vsm-icon {\n  float: left;\n  line-height: 30px;\n  margin-right: 10px;\n}\n.v-sidebar-menu.rtl .vsm-icon {\n  float: right;\n  margin-left: 10px;\n  margin-right: 0px;\n}\n.v-sidebar-menu .vsm-arrow {\n  width: 30px;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n  -webkit-transition: 0.3s -webkit-transform;\n  transition: 0.3s -webkit-transform;\n  transition: 0.3s transform;\n  transition: 0.3s transform, 0.3s -webkit-transform;\n}\n.v-sidebar-menu .vsm-arrow:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .vsm-arrow.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu .vsm-arrow.open-arrow {\n  -webkit-transform: translateY(-50%) rotate(90deg);\n          transform: translateY(-50%) rotate(90deg);\n}\n.v-sidebar-menu.rtl .vsm-arrow {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  padding: 5px;\n}\n.v-sidebar-menu .expand-enter-active, .v-sidebar-menu .expand-leave-active {\n  -webkit-transition: height 0.35s ease;\n  transition: height 0.35s ease;\n  overflow: hidden;\n}\n.v-sidebar-menu .expand-enter, .v-sidebar-menu .expand-leave-to {\n  height: 0 !important;\n}\n.v-sidebar-menu .slide-animation-enter-active {\n  -webkit-animation: slide-animation 0.2s;\n          animation: slide-animation 0.2s;\n}\n.v-sidebar-menu .slide-animation-leave-active {\n  animation: slide-animation 0.2s reverse;\n}\n@-webkit-keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n@keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n.v-sidebar-menu .vsm-header {\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px;\n  white-space: nowrap;\n  text-transform: uppercase;\n}\n.v-sidebar-menu .vsm-badge {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  padding: 0px 6px;\n  font-size: 12px;\n  border-radius: 3px;\n  height: 20px;\n  line-height: 20px;\n  font-weight: 600;\n  text-transform: uppercase;\n}\n.v-sidebar-menu.rtl .vsm-badge {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .collapse-btn {\n  display: block;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  height: 50px;\n  cursor: pointer;\n  border: none;\n  width: 100%;\n}\n.v-sidebar-menu .collapse-btn:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .collapse-btn.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu {\n  background-color: #2a2a2e;\n}\n.v-sidebar-menu .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.vsm-default .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  background-color: #36363b;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu .vsm-header {\n  color: rgba(255, 255, 255, 0.7);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .collapse-btn {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.white-theme {\n  background-color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #262626;\n  background-color: #bbc5d6;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #262626;\n}\n.v-sidebar-menu.white-theme.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-link:hover {\n  color: #262626;\n  background-color: #f2f2f2;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list {\n  background-color: #e3e3e3;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #262626;\n  background-color: #f2f2f2;\n}\n.v-sidebar-menu.white-theme .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme .vsm-header {\n  color: rgba(38, 38, 38, 0.7);\n}\n.v-sidebar-menu.white-theme .vsm-badge.default-badge {\n  color: #262626;\n  background-color: #e0e0e0;\n}\n.v-sidebar-menu.white-theme .collapse-btn {\n  color: #262626;\n  background-color: #f2f2f2;\n}", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.v-sidebar-menu, .v-sidebar-menu * {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n}\n.v-sidebar-menu {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100vh;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  z-index: 999;\n  -webkit-transition: 0.3s width;\n  transition: 0.3s width;\n}\n.v-sidebar-menu.rtl {\n  right: 0;\n  left: inherit;\n  text-align: right;\n}\n.v-sidebar-menu > .vsm-list {\n  width: 100%;\n  height: 100%;\n  overflow: hidden auto;\n}\n.v-sidebar-menu.vsm-collapsed > .vsm-list {\n  width: calc(100% + 17px);\n  padding-right: 17px;\n}\n.v-sidebar-menu.rtl > .vsm-list {\n  direction: rtl;\n}\n.v-sidebar-menu.vsm-collapsed.rtl > .vsm-list {\n  padding-right: 0px;\n  padding-left: 17px;\n  margin-left: -17px;\n}\n.v-sidebar-menu.vsm-collapsed.rtl:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item {\n  position: relative;\n  display: block;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link {\n  line-height: 30px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link:after {\n  content: \"\";\n  display: block;\n  clear: both;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link > .vsm-icon {\n  height: 30px;\n  line-height: 30px;\n  width: 30px;\n  text-align: center;\n  border-radius: 3px;\n}\n.v-sidebar-menu .vsm-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.parent-active-item > .vsm-link {\n  font-weight: 600;\n}\n.v-sidebar-menu .vsm-link {\n  position: relative;\n  display: block;\n  font-size: 16px;\n  font-weight: 400;\n  padding: 10px;\n  line-height: 30px;\n  text-decoration: none;\n  z-index: 20;\n  -webkit-transition: 0.3s all;\n  transition: 0.3s all;\n}\n.v-sidebar-menu .vsm-link[disabled] {\n  opacity: 0.4;\n  pointer-events: none;\n}\n.v-sidebar-menu .vsm-title {\n  display: block;\n  white-space: nowrap;\n}\n.v-sidebar-menu .vsm-icon {\n  float: left;\n  line-height: 30px;\n  margin-right: 10px;\n}\n.v-sidebar-menu.rtl .vsm-icon {\n  float: right;\n  margin-left: 10px;\n  margin-right: 0px;\n}\n.v-sidebar-menu .vsm-arrow {\n  width: 30px;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n  -webkit-transition: 0.3s -webkit-transform;\n  transition: 0.3s -webkit-transform;\n  transition: 0.3s transform;\n  transition: 0.3s transform, 0.3s -webkit-transform;\n}\n.v-sidebar-menu .vsm-arrow:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .vsm-arrow.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu .vsm-arrow.open-arrow {\n  -webkit-transform: translateY(-50%) rotate(90deg);\n          transform: translateY(-50%) rotate(90deg);\n}\n.v-sidebar-menu.rtl .vsm-arrow {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  padding: 5px;\n}\n.v-sidebar-menu .expand-enter-active, .v-sidebar-menu .expand-leave-active {\n  -webkit-transition: height 0.35s ease;\n  transition: height 0.35s ease;\n  overflow: hidden;\n}\n.v-sidebar-menu .expand-enter, .v-sidebar-menu .expand-leave-to {\n  height: 0 !important;\n}\n.v-sidebar-menu .slide-animation-enter-active {\n  -webkit-animation: slide-animation 0.2s;\n          animation: slide-animation 0.2s;\n}\n.v-sidebar-menu .slide-animation-leave-active {\n  animation: slide-animation 0.2s reverse;\n}\n@-webkit-keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n@keyframes slide-animation {\n0% {\n    width: 0%;\n}\n100% {\n    width: 100%;\n}\n}\n.v-sidebar-menu .vsm-header {\n  font-size: 14px;\n  font-weight: 600;\n  padding: 10px;\n  white-space: nowrap;\n  text-transform: uppercase;\n}\n.v-sidebar-menu .vsm-badge {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  padding: 0px 6px;\n  font-size: 12px;\n  border-radius: 3px;\n  height: 20px;\n  line-height: 20px;\n  font-weight: 600;\n  text-transform: uppercase;\n}\n.v-sidebar-menu.rtl .vsm-badge {\n  left: 10px;\n  right: inherit;\n}\n.v-sidebar-menu .collapse-btn {\n  display: block;\n  text-align: center;\n  font-style: normal;\n  font-weight: 900;\n  height: 50px;\n  cursor: pointer;\n  border: none;\n  width: 100%;\n}\n.v-sidebar-menu .collapse-btn:after {\n  content: \"\";\n  font-family: \"Font Awesome 5 Free\";\n}\n.v-sidebar-menu .collapse-btn.slot-icon:after {\n  display: none;\n}\n.v-sidebar-menu {\n  background-color: #2a2a2e;\n}\n.v-sidebar-menu .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.vsm-default .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list {\n  background-color: #36363b;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #fff;\n  background-color: rgba(30, 30, 33, 0.5);\n}\n.v-sidebar-menu .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu .vsm-header {\n  color: rgba(255, 255, 255, 0.7);\n}\n.v-sidebar-menu .vsm-badge.default-badge {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu .collapse-btn {\n  color: #fff;\n  background-color: #1e1e21;\n}\n.v-sidebar-menu.white-theme {\n  background-color: #2c445a;\n}\n.v-sidebar-menu.white-theme .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-link {\n  color: #fff;\n}\n.v-sidebar-menu.white-theme .vsm-item.mobile-item > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item > .vsm-link > .vsm-icon {\n  color: #262626;\n  background-color: #bbc5d6;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: 3px 0px 0px 0px #4285f4 inset;\n          box-shadow: 3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme .vsm-item.first-item.active-item > .vsm-link > .vsm-icon, .v-sidebar-menu.white-theme .vsm-item.first-item.parent-active-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: #262626;\n}\n.v-sidebar-menu.white-theme.rtl .vsm-item.first-item.active-item > .vsm-link, .v-sidebar-menu.white-theme.rtl .vsm-item.first-item.parent-active-item > .vsm-link {\n  -webkit-box-shadow: -3px 0px 0px 0px #4285f4 inset;\n          box-shadow: -3px 0px 0px 0px #4285f4 inset;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link {\n  color: #fff;\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-item.first-item.open-item > .vsm-link > .vsm-icon {\n  color: #fff;\n  background-color: transparent;\n}\n.v-sidebar-menu.white-theme.vsm-default .vsm-link:hover {\n  color: #262626;\n  background-color: #243749;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list {\n  background-color: #2c445a;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link {\n  color: #262626;\n}\n.v-sidebar-menu.white-theme .vsm-dropdown > .vsm-list .vsm-link:hover {\n  color: #262626;\n  background-color: #243749;\n}\n.v-sidebar-menu.white-theme .vsm-mobile-bg {\n  background-color: #4285f4;\n}\n.v-sidebar-menu.white-theme .vsm-header {\n  color: rgba(38, 38, 38, 0.7);\n}\n.v-sidebar-menu.white-theme .vsm-badge.default-badge {\n  color: #262626;\n  background-color: #e0e0e0;\n}\n.v-sidebar-menu.white-theme .collapse-btn {\n  color: #262626;\n  background-color: #243749;\n}", ""]);
 
 
 /***/ }),
@@ -47633,6 +47637,132 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
+/***/ "./node_modules/vue-cookies/vue-cookies.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+    /**
+ * Vue Cookies v1.5.13
+ * https://github.com/cmp-cc/vue-cookies
+ *
+ * Copyright 2016, cmp-cc
+ * Released under the MIT license
+ */
+
+(function() {
+
+    var defaultConfig = {
+        expires : '1d',
+        path : '; path=/'
+    }
+
+    var VueCookies = {
+        // install of Vue
+        install: function(Vue) {
+            Vue.prototype.$cookies = this
+            Vue.cookies = this
+        },
+        config : function(expireTimes,path) {
+            if(expireTimes) {
+                defaultConfig.expires = expireTimes;
+            }
+            if(path) {
+                defaultConfig.path = '; path=' + path;
+            }
+        },
+        get: function(key) {
+            var value = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null
+
+            if(value && value.substring(0,1) === "{" && value.substring(value.length-1,value.length) === "}") {
+                try {
+                    value = JSON.parse(value)
+                }catch (e) {
+                    return value;
+                }
+            }
+            return value;
+        },
+        set: function(key, value, expireTimes, path, domain, secure) {
+            if (!key) {
+                throw new Error("cookie name is not find in first argument")
+            }else if(/^(?:expires|max\-age|path|domain|secure)$/i.test(key)){
+                throw new Error("cookie key name illegality ,Cannot be set to ['expires','max-age','path','domain','secure']\t","current key name: "+key);
+            }
+            // support json object
+            if(value && value.constructor === Object) {
+                value = JSON.stringify(value);
+            }
+            var _expires = "";
+            expireTimes = expireTimes === undefined ? defaultConfig.expires : expireTimes;
+            if (expireTimes && expireTimes != 0) {
+                switch (expireTimes.constructor) {
+                    case Number:
+                        if(expireTimes === Infinity || expireTimes === -1) _expires = "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                        else _expires = "; max-age=" + expireTimes;
+                        break;
+                    case String:
+                        if (/^(?:\d{1,}(y|m|d|h|min|s))$/i.test(expireTimes)) {
+                            // get capture number group
+                            var _expireTime = expireTimes.replace(/^(\d{1,})(?:y|m|d|h|min|s)$/i, "$1");
+                            // get capture type group , to lower case
+                            switch (expireTimes.replace(/^(?:\d{1,})(y|m|d|h|min|s)$/i, "$1").toLowerCase()) {
+                                // Frequency sorting
+                                case 'm':  _expires = "; max-age=" + +_expireTime * 2592000; break; // 60 * 60 * 24 * 30
+                                case 'd':  _expires = "; max-age=" + +_expireTime * 86400; break; // 60 * 60 * 24
+                                case 'h': _expires = "; max-age=" + +_expireTime * 3600; break; // 60 * 60
+                                case 'min':  _expires = "; max-age=" + +_expireTime * 60; break; // 60
+                                case 's': _expires = "; max-age=" + _expireTime; break;
+                                case 'y': _expires = "; max-age=" + +_expireTime * 31104000; break; // 60 * 60 * 24 * 30 * 12
+                                default: new Error("unknown exception of 'set operation'");
+                            }
+                        } else {
+                            _expires = "; expires=" + expireTimes;
+                        }
+                        break;
+                    case Date:
+                        _expires = "; expires=" + expireTimes.toUTCString();
+                        break;
+                }
+            }
+            document.cookie = encodeURIComponent(key) + "=" + encodeURIComponent(value) + _expires + (domain ? "; domain=" + domain : "") + (path ? "; path=" + path : defaultConfig.path) + (secure ? "; secure" : "");
+            return this;
+        },
+        remove: function(key, path, domain) {
+            if (!key || !this.isKey(key)) {
+                return false;
+            }
+            document.cookie = encodeURIComponent(key) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (domain ? "; domain=" + domain : "") + (path ? "; path=" + path : defaultConfig.path);
+            return this;
+        },
+        isKey: function(key) {
+            return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+        },
+        keys:  function() {
+            if(!document.cookie) return [];
+            var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+            for (var _index = 0; _index < _keys.length; _index++) {
+                _keys[_index] = decodeURIComponent(_keys[_index]);
+            }
+            return _keys;
+        }
+    }
+
+    if (true) {
+        module.exports = VueCookies;
+    } else {}
+    // vue-cookies can exist independently,no dependencies library
+    if(typeof window!=="undefined"){
+        window.$cookies = VueCookies;
+    }
+
+})()
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-sidebar-menu/src/components/Item.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-sidebar-menu/src/components/Item.vue?vue&type=script&lang=js& ***!
@@ -65108,27 +65238,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_sidebar_menu_src__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-sidebar-menu/src */ "./node_modules/vue-sidebar-menu/src/index.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-sidebar-menu */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.js");
-/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js");
+/* harmony import */ var vue_cookies__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_cookies__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-sidebar-menu */ "./node_modules/vue-sidebar-menu/dist/vue-sidebar-menu.js");
+/* harmony import */ var vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./routes */ "./resources/js/routes/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.min.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(__webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js"));
 
 
 
@@ -65141,23 +65274,27 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_7__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_8__["faCoffee"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_6___default.a, axios__WEBPACK_IMPORTED_MODULE_5___default.a);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_2___default.a);
-vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_9__["FontAwesomeIcon"]);
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_8__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["faCoffee"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_axios__WEBPACK_IMPORTED_MODULE_7___default.a, axios__WEBPACK_IMPORTED_MODULE_6___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_sidebar_menu__WEBPACK_IMPORTED_MODULE_3___default.a);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_cookies__WEBPACK_IMPORTED_MODULE_2___default.a); // set default config
+
+vue_cookies__WEBPACK_IMPORTED_MODULE_2___default.a.config('7d');
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_10__["FontAwesomeIcon"]);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('index-component', __webpack_require__(/*! ./components/IndexComponent.vue */ "./resources/js/components/IndexComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.component('user-account', __webpack_require__(/*! ./components/UserAccountComponent.vue */ "./resources/js/components/UserAccountComponent.vue")["default"]);
 var url = window.baseUrl;
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
-  routes: _routes__WEBPACK_IMPORTED_MODULE_4__["default"],
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
+  routes: _routes__WEBPACK_IMPORTED_MODULE_5__["default"],
   base: url,
   mode: 'history'
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
   el: '#app',
   router: router,
-  store: _store__WEBPACK_IMPORTED_MODULE_12__["default"]
+  store: _store__WEBPACK_IMPORTED_MODULE_13__["default"]
 });
 
 /***/ }),
@@ -65450,30 +65587,39 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         context.commit('setFullMenu', resp.data);
       });
     },
-    getAuth: function getAuth(context) {
+    getAuth: function getAuth(context, _ref) {
+      var current = _ref.current;
       axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-      axios.get(window.base + '/api/auth/check').then(function (resp) {
-        console.log(resp.status); //  location.href = '/admin/dashboard';
+      axios.post(window.base + '/api/auth/check').then(function (resp) {
+        if (current.parh === '/') {
+          location.href = '/admin/dashboard';
+        }
       })["catch"](function (error) {
-        location.href = '/';
+        if (current.parh.indexOf('/admin') + 1) {
+          location.href = '/';
+        }
       });
     },
-    login: function login(context, _ref) {
-      var email = _ref.email,
-          password = _ref.password;
+    login: function login(context, _ref2) {
+      var email = _ref2.email,
+          password = _ref2.password;
       axios.post(window.base + '/api/auth/login', {
         email: email,
         password: password
       }).then(function (resp) {
+        document.cookie = "Authorization=" + resp.data.access_token + ";expires=" + resp.data.expires_in;
         localStorage.setItem('access_token', resp.data.access_token);
         location.href = '/admin/dashboard';
-      })["catch"](function (error) {
-        location.href = '/';
       });
     },
     logout: function logout(context) {
-      localStorage.removeItem('access_token');
-      location.href = '/';
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.post(window.base + '/api/auth/logout').then(function (resp) {
+        localStorage.removeItem('access_token');
+        location.href = '/';
+      })["catch"](function (error) {
+        location.href = '/';
+      });
     }
   }
 });
@@ -65510,9 +65656,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
-module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
+module.exports = __webpack_require__(/*! D:\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

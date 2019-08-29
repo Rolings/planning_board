@@ -15,14 +15,13 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
-    Route::get('check', 'AuthController@auth');
+    Route::post('check', 'AuthController@auth');
+    Route::group(['middleware' => 'jwt'], function () {
+        Route::post('logout', 'AuthController@logout');
+    });
 });
 
-Route::group(['middleware' => 'jwt', 'prefix' => 'auth'], function () {
 
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-});
 
 Route::group(['middleware' => 'jwt'], function () {
     Route::post('get-menu', 'MenuController@index');

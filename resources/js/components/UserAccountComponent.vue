@@ -36,7 +36,7 @@
             };
         },
         mounted() {
-            this.$store.dispatch('getAuth');
+            this.$store.dispatch('getAuth',{current: this.$router.currentRoute});
         },
         methods: {
             getItemMenu(data) {

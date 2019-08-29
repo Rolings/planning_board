@@ -24,7 +24,7 @@
         name: "IndexComponent",
         mounted() {
             if(!!localStorage.getItem('access_token')){
-                this.$store.dispatch('getAuth');
+                this.$store.dispatch('getAuth',{current: this.$router.currentRoute});
             }
         },
         data() {
