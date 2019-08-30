@@ -13,14 +13,14 @@ class UserController extends Controller
         $this->middleware('jwt');
     }
 
-    public function get(Request $request)
+    public function list(Request $request)
     {
         return User::all();
     }
 
-    public function getSingle(Request $request)
+    public function getSingle(Request $request, $id)
     {
-
+        return User::find($id);
     }
 
     public function add(Request $request)
@@ -29,14 +29,25 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => ['required','regex:/[a-zA-Z0-9 _.,!()+=@$#%*-]*$/']
+            'password' => ['required', 'regex:/[a-zA-Z0-9 _.,!()+=@$#%*-]*$/']
         ]);
 
-        if ($validator->fails()) {
-            return redirect('/login');
-        }
+        if ($validator->fails())
+            return response()->json(['error' => $validator->errors()], 401);
 
-        return User::create($user);
+
+        return User::create($request->all());
     }
+
+    public function edit(Request $request, $id)
+    {
+        return User::find($id)->update($request->all());
+    }
+
+    public function delete(Request $request, $id)
+    {
+        return User::find($id)->delete();
+    }
+
 
 }

@@ -10,13 +10,15 @@ const store = new Vuex.Store({
             icon: 'fa fa-user'
         }],
         full_menu: [],
-        auth: false
+        auth: false,
+        userList: []
     },
     getters: {
         menu: state => state.menu,
         full_menu: state => state.full_menu,
         auth: state => state.auth,
         login: state => state.login,
+        userList: state => state.userList,
     },
     mutations: {
         setMenu(state, value) {
@@ -30,6 +32,9 @@ const store = new Vuex.Store({
         },
         setlogin(state, value) {
             state.login = value
+        },
+        setUserList(state, value) {
+            state.userList = value
         },
     },
     actions: {
@@ -58,7 +63,6 @@ const store = new Vuex.Store({
                 if (current.parh.indexOf('/admin') + 1) {
                     location.href = '/';
                 }
-
             });
         },
         login(context, {email, password}) {
@@ -79,7 +83,19 @@ const store = new Vuex.Store({
                 location.href = '/';
             });
 
-        }
+        },
+        getUserList(context){
+            axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            axios.get(window.base + '/api/user/list')
+                .then((resp) => {
+                    context.commit('setUserList', resp.data)
+                })
+        },
+        userSingle(context,{id}){},
+        userAdd(context,{field}){},
+        userEdit(context,{id}){},
+        userDelete(context,{id}){},
+
     },
 
 });

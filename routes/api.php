@@ -21,12 +21,19 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
-
-
 Route::group(['middleware' => 'jwt'], function () {
     Route::post('get-menu', 'MenuController@index');
     Route::post('get-full-menu', 'MenuController@getFullMenu');
     Route::post('get-menu-information', 'MenuController@getMenuInformation');
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('list', 'UserController@list');
+        Route::get('single/{id}', 'UserController@getSingle');
+        Route::post('add', 'UserController@add');
+        Route::get('edit/{id}', 'UserController@edit');
+        Route::get('delete/{id}', 'UserController@logout');
+    });
+
 });
 
 

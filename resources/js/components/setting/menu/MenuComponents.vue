@@ -1,5 +1,17 @@
 <template>
     <div>
+        <div>
+            <h2><span class="badge badge-secondary">Menu</span></h2>
+        </div>
+        <div class="menu-breadcrumbs">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Library</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav>
+        </div>
         <div class="menu-control">
             <button class="mdl-button mdl-js-button mdl-button--fab">
                 <i class="material-icons">add</i>
@@ -11,11 +23,7 @@
                 <i class="material-icons">filter_list</i>
             </button>
         </div>
-        <div class="menu-breadcrumbs">
-
-        </div>
         <div class="menu-list" :is="contentComponent" @getInformationSelectMenu="getInformationSelectMenu"></div>
-
     </div>
 
 </template>
