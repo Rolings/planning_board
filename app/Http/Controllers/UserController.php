@@ -18,9 +18,9 @@ class UserController extends Controller
         return User::all();
     }
 
-    public function getSingle(Request $request, $id)
+    public function getSingle($id)
     {
-        return User::find($id);
+        return User::where('id',$id)->first();
     }
 
     public function add(Request $request)

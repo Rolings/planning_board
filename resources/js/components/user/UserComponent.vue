@@ -6,23 +6,12 @@
         <div class="menu-breadcrumbs">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/user">User</a></li>
                 </ol>
             </nav>
         </div>
-        <div class="menu-control">
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">add</i>
-            </button>
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">delete_sweep</i>
-            </button>
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">filter_list</i>
-            </button>
-        </div>
+
         <div class="user-list" :is="contentComponent" @getInformationSelectUser="getSingleUser"></div>
     </div>
 </template>
@@ -46,7 +35,7 @@
         },
         methods: {
             getSingleUser(data){
-                this.$store.dispatch('userSingle', {user_id: data.user_id});
+                this.contentComponent = components.UserEdit;
             },
             addUser :function () {
                 

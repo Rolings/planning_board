@@ -10,7 +10,7 @@ const store = new Vuex.Store({
             icon: 'fa fa-user'
         }],
         full_menu: [],
-        auth: false,
+        auth: [],
         userList: [],
         userSingle: []
     },
@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         auth: state => state.auth,
         login: state => state.login,
         userList: state => state.userList,
-        userSingle: state => state.userSingle,
+        user: state => state.userSingle,
     },
     mutations: {
         setMenu(state, value) {
@@ -47,6 +47,7 @@ const store = new Vuex.Store({
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
             axios.post(window.base + '/api/auth/check')
                 .then((resp) => {
+                    context.commit('setAuth', resp.data);
                     if (current.parh === '/') {
                         location.href = '/admin/dashboard';
                     }

@@ -1,5 +1,16 @@
 <template>
     <div>
+        <div class="menu-control">
+            <button class="mdl-button mdl-js-button mdl-button--fab">
+                <i class="material-icons">add</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--fab">
+                <i class="material-icons">delete_sweep</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--fab">
+                <i class="material-icons">filter_list</i>
+            </button>
+        </div>
         <ul class="demo-list-three mdl-list">
             <draggable :list="userList" :disabled="!enabled" class="list-group" ghost-class="ghost" :move="checkMove"
                        @start="dragging = true" @end="dragging = false">
