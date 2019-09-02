@@ -13,9 +13,9 @@
                     </span>
                     <span class="mdl-list__item-secondary-action">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                                @click="getInformationSelectMenu(user.id)">Edit</button>
+                                @click="getInformationSelectUser(user.id)">Edit</button>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                                @click="deleteSelectMenu(user.id)">Delete</button>
+                                @click="deleteSelectUser(user.id)">Delete</button>
                 </span>
                 </li>
             </draggable>
@@ -45,6 +45,7 @@
       },
       methods: {
           getInformationSelectUser(user_id) {
+              console.log('List component',user_id);
               this.$emit('getInformationSelectUser', {user_id: user_id});
           },
           deleteSelectUser(user_id) {

@@ -56,7 +56,7 @@
                     .then(response => {
                         console.log(response.data);
                         this.menuInformation = response.data;
-                       this.contentComponent = components.MenuEdit;
+                        this.contentComponent = components.MenuEdit;
 
                     }).catch(function (error) {
                     currentObj.output = error;

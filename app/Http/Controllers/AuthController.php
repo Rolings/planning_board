@@ -35,10 +35,10 @@ class AuthController extends Controller
         return $token;
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         auth()->logout();
-        return response()->json(['message' => 'Successfully logged out']);
+        return  $request->method() === 'GET' ?  redirect('/') : response()->json(['message' => $request->method()]);
     }
 
     public function auth(Request $request)

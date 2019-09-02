@@ -65412,7 +65412,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     }],
     full_menu: [],
     auth: false,
-    userList: []
+    userList: [],
+    userSingle: []
   },
   getters: {
     menu: function menu(state) {
@@ -65429,6 +65430,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     userList: function userList(state) {
       return state.userList;
+    },
+    userSingle: function userSingle(state) {
+      return state.userSingle;
     }
   },
   mutations: {
@@ -65446,21 +65450,12 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setUserList: function setUserList(state, value) {
       state.userList = value;
+    },
+    setUserSingle: function setUserSingle(state, value) {
+      state.userSingle = value;
     }
   },
   actions: {
-    getMenu: function getMenu(context) {
-      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-      axios.post(window.base + '/api/get-menu').then(function (resp) {
-        context.commit('setMenu', resp.data);
-      });
-    },
-    getFullMenu: function getFullMenu(context) {
-      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-      axios.post(window.base + '/api/get-full-menu').then(function (resp) {
-        context.commit('setFullMenu', resp.data);
-      });
-    },
     getAuth: function getAuth(context, _ref) {
       var current = _ref.current;
       axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
@@ -65469,6 +65464,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
           location.href = '/admin/dashboard';
         }
       })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
+
         if (current.parh.indexOf('/admin') + 1) {
           location.href = '/';
         }
@@ -65484,6 +65481,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         document.cookie = "Authorization=" + resp.data.access_token + ";expires=" + resp.data.expires_in;
         localStorage.setItem('access_token', resp.data.access_token);
         location.href = '/admin/dashboard';
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
       });
     },
     logout: function logout(context) {
@@ -65493,16 +65492,42 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
         location.href = '/';
       })["catch"](function (error) {
         location.href = '/';
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
+      });
+    },
+    getMenu: function getMenu(context) {
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.post(window.base + '/api/get-menu').then(function (resp) {
+        context.commit('setMenu', resp.data);
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
+      });
+    },
+    getFullMenu: function getFullMenu(context) {
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.post(window.base + '/api/get-full-menu').then(function (resp) {
+        context.commit('setFullMenu', resp.data);
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
       });
     },
     getUserList: function getUserList(context) {
       axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
-      axios.get(window.base + '/api/user/list').then(function (resp) {
+      axios.post(window.base + '/api/user/list').then(function (resp) {
         context.commit('setUserList', resp.data);
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
       });
     },
     userSingle: function userSingle(context, _ref3) {
-      var id = _ref3.id;
+      var user_id = _ref3.user_id;
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.post(window.base + '/api/user/single/' + user_id).then(function (resp) {
+        context.commit('setUserSingle', resp.data);
+      })["catch"](function (error) {
+        if (error.response.status === 401) location.href = '/';
+      });
     },
     userAdd: function userAdd(context, _ref4) {
       var field = _ref4.field;

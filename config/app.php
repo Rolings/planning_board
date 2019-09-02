@@ -54,6 +54,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+
+    'jwt_secret'=> env('JWT_SECRET', 'abC123!'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

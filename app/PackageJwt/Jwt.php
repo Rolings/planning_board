@@ -7,7 +7,7 @@ use App\Models\User;
 class JWT
 {
     public $token;
-    public $secret_key = 'abC123!';
+    public $secret_key;
     private static $instance = null;
 
     public static function instance()
@@ -15,6 +15,7 @@ class JWT
         if (self::$instance === null) {
             self::$instance = new self();
         }
+        self::$instance->secret_key = config('jwt_secret');
         return self::$instance;
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 /*
 |-----------------------------------------------------UserAccount---------------------
 | API Routes
@@ -25,15 +24,13 @@ Route::group(['middleware' => 'jwt'], function () {
     Route::post('get-menu', 'MenuController@index');
     Route::post('get-full-menu', 'MenuController@getFullMenu');
     Route::post('get-menu-information', 'MenuController@getMenuInformation');
-
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('list', 'UserController@list');
-        Route::get('single/{id}', 'UserController@getSingle');
-        Route::post('add', 'UserController@add');
-        Route::get('edit/{id}', 'UserController@edit');
-        Route::get('delete/{id}', 'UserController@logout');
-    });
-
 });
 
+Route::group(['middleware' => 'jwt','prefix' => 'user'], function () {
+    Route::post('list', 'UserController@list');
+    Route::post('single/{id}', 'UserController@getSingle');
+    Route::post('add', 'UserController@add');
+    Route::post('edit/{id}', 'UserController@edit');
+    Route::post('delete/{id}', 'UserController@logout');
+});
 

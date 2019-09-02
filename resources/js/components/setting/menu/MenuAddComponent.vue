@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'AddMenuComponent'
+    name: 'MenuAddComponent'
   };
 </script>
 

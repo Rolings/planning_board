@@ -23,7 +23,7 @@
                 <i class="material-icons">filter_list</i>
             </button>
         </div>
-        <div class="user-list" :is="contentComponent"></div>
+        <div class="user-list" :is="contentComponent" @getInformationSelectUser="getSingleUser"></div>
     </div>
 </template>
 
@@ -45,6 +45,9 @@
             };
         },
         methods: {
+            getSingleUser(data){
+                this.$store.dispatch('userSingle', {user_id: data.user_id});
+            },
             addUser :function () {
                 
             },
