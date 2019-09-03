@@ -2,7 +2,6 @@ import {SidebarMenu} from 'vue-sidebar-menu/src';
 
 require('./bootstrap');
 window.Vue = require('vue');
-
 import Vue from 'vue'
 import VueSidebarMenu from 'vue-sidebar-menu'
 import VueRouter from 'vue-router';

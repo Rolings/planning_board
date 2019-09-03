@@ -11,6 +11,11 @@ class MenuController extends Controller
     protected $child_menu = [];
     protected $exclude_id = [];
 
+    public function __construct()
+    {
+        $this->middleware('jwt');
+    }
+
     protected function sortBy($array, $key)
     {
         usort($array, function ($a, $b) use ($key) {

@@ -11,12 +11,11 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('jwt.auth')->except(['index']);
+        $this->middleware(['jwt','web']);
     }
 
     public function index()
     {
-        return view('user-account.home');
+        return view('admin');
     }
-    //
 }

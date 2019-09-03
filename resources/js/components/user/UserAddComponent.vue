@@ -4,8 +4,8 @@
 
 <script>
   export default {
-    name: 'MenuAddComponent'
-  };
+    name: "UserAddComponent"
+  }
 </script>
 
 <style scoped>
