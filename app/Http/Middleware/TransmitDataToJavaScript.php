@@ -16,6 +16,7 @@ class TransmitDataToJavaScript
         JavaScriptFacade::put([
             'baseUrl' => '/',
             'base' => URL::to(''),
+            'storage' => storage_path('user'),
             'csrfToken' => csrf_token(),
         ]);
 

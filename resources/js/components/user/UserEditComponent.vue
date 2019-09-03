@@ -1,9 +1,14 @@
 <template>
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <form class="form" @submit="save">
+
+                <form class="form" @submit="save">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <img :src="`${storage}/${user.image}`" alt="" class="rounded">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Name: </label>
                             <input type="text" id="name" name="name" class="form-control" :value="user.name">
@@ -15,10 +20,9 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-dark">Войти</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
 
-            </div>
         </div>
     </div>
 </template>
@@ -26,6 +30,11 @@
 <script>
   export default {
     name: "UserEditComponent",
+      data() {
+          return {
+              storage: window.storage
+          }
+      },
       mounted() {
       },
       computed: {

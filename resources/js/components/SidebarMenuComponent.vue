@@ -7,9 +7,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li v-for="( single, index ) in menu" v-if="!single.child" class="nav-item">
-<!--                    <a class="nav-link" v-bind:href="single.href">{{ single.title }}<span
-                        class="sr-only">(current)</span></a>-->
-
                     <router-link class="nav-link" v-bind:to="single.href" v-on:click.native="goBreadcrumb">{{ single.title }}<span class="sr-only">(current)</span></router-link>
                 </li>
                 <li class="dropdown-divider"></li>
@@ -22,7 +19,6 @@
                         <li v-for="( child_element, index ) in single.child" v-if="!child_element.child" class="nav-item">
 
 
-                          <!--  <a class="nav-link child-link" v-bind:href="child_element.href">{{ child_element.title }}</a>-->
 
                             <router-link class="nav-link child-link" v-bind:to="child_element.href" v-on:click.native="goBreadcrumb">{{ child_element.title }}</router-link>
 
@@ -40,7 +36,6 @@
                             <ul v-if="child_element.child" class="dropdown-menu" :aria-labelledby="`navbarDropdown-${child_element.id}`">
                                 <li v-for="( child_element_n, index ) in child_element.child" v-if="child_element.child" class="nav-item">
 
-                                    <!--<a class="nav-link child-link" v-bind:href="child_element_n.href">{{ child_element_n.title }}</a>-->
 
                                     <router-link class="nav-link child-link" v-bind:to="child_element_n.href" v-on:click.native="goBreadcrumb">{{ child_element_n.title }}</router-link>
                                 </li>
