@@ -17,26 +17,15 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ single.title }}</a>
                     <ul v-if="single.child" class="dropdown-menu" :aria-labelledby="`navbarDropdown-${single.id}`">
                         <li v-for="( child_element, index ) in single.child" v-if="!child_element.child" class="nav-item">
-
-
-
                             <router-link class="nav-link child-link" v-bind:to="child_element.href" v-on:click.native="goBreadcrumb">{{ child_element.title }}</router-link>
-
                         </li>
-
                         <li v-for="( child_element, index ) in single.child" v-if="child_element.child" class="nav-item dropdown">
-
-
                             <a v-if="single.child" class="nav-link dropdown-toggle" v-bind:href="single.href"
                                :id="`navbarDropdown-${single.id}`"
                                role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ child_element.title }}</a>
-
-
                             <ul v-if="child_element.child" class="dropdown-menu" :aria-labelledby="`navbarDropdown-${child_element.id}`">
                                 <li v-for="( child_element_n, index ) in child_element.child" v-if="child_element.child" class="nav-item">
-
-
                                     <router-link class="nav-link child-link" v-bind:to="child_element_n.href" v-on:click.native="goBreadcrumb">{{ child_element_n.title }}</router-link>
                                 </li>
                             </ul>

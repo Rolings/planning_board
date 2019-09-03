@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +29,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getImageAttribute()
+    {
+        return asset('storage/' . $this->attributes['image']);
+    }
+
+    public function getRoleIdAttribute()
+    {
+        return Role::find($this->attributes['role_id'])->name;
+    }
+
+
 }

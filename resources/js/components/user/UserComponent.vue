@@ -37,6 +37,7 @@
                 this.$emit('goBreadcrumb', {href:event.currentTarget.getAttribute('href')});
             },
             getSingleUser(data){
+                this.$store.dispatch('userSingle',{user_id:data.user_id});
                 this.contentComponent = components.UserEdit;
             },
             addUser :function () {
