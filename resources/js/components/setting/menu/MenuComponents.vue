@@ -6,22 +6,10 @@
         <div class="menu-breadcrumbs">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><router-link to="/admin/dashboard" v-on:click.native="goBreadcrumb">Dashboard</router-link></li>
+                    <li class="breadcrumb-item"><router-link to="/admin/menu" v-on:click.native="goBreadcrumb">Menu</router-link></li>
                 </ol>
             </nav>
-        </div>
-        <div class="menu-control">
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">add</i>
-            </button>
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">delete_sweep</i>
-            </button>
-            <button class="mdl-button mdl-js-button mdl-button--fab">
-                <i class="material-icons">filter_list</i>
-            </button>
         </div>
         <div class="menu-list" :is="contentComponent" @getInformationSelectMenu="getInformationSelectMenu"></div>
     </div>
@@ -49,6 +37,9 @@
             };
         },
         methods: {
+            goBreadcrumb(event){
+                this.$emit('goBreadcrumb', {href:event.currentTarget.getAttribute('href')});
+            },
             getInformationSelectMenu(menu_id) {
                 let currentObj = this;
                 window.axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');

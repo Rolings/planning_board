@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="sidebar-block">
-            <SidebarMenu @onItemClick="getItemMenu"></SidebarMenu>
+            <SidebarMenu @goBreadcrumb="goBreadcrumb"></SidebarMenu>
         </div>
-        <div class="content-block" :is="currentComponent"></div>
+        <div class="content-block" @goBreadcrumb="goBreadcrumb" :is="currentComponent"  ></div>
     </div>
 </template>
 <script>
@@ -16,7 +16,7 @@
         'page': () => import('../components/page/PageComponent'),
         'user': () => import('../components/user/UserComponent'),
         'system': () => import('../components/setting/SystemComponent'),
-        'permissions': () => import('../components/setting/PermissionsComponent')
+        'permissions': () => import('./setting/PermissionComponent')
     };
 
     // Create array keys from components object
@@ -39,9 +39,9 @@
             this.$store.dispatch('getAuth',{current: this.$router.currentRoute});
         },
         methods: {
-            getItemMenu(data) {
-                let url = data.event.target.baseURI.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
-                let select_menu = url[url.length - 1];
+            goBreadcrumb(data) {
+                let url = data.href.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
+                let select_menu = url[url.length - 1].trim();
                 if (this.componentsArray.includes(select_menu)) {
                     this.currentComponent = select_menu;
                 }

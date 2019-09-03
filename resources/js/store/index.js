@@ -127,7 +127,7 @@ const store = new Vuex.Store({
         },
         userAdd(context, {field}) {
         },
-        userEdit(context, {id}) {
+        userEdit(context, {data}) {
         },
         userDelete(context, {id}) {
         },

@@ -6,8 +6,8 @@
         <div class="menu-breadcrumbs">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/user">User</a></li>
+                    <li class="breadcrumb-item"><router-link to="/admin/dashboard" v-on:click.native="goBreadcrumb">Dashboard</router-link></li>
+                    <li class="breadcrumb-item"><router-link to="/admin/user" v-on:click.native="goBreadcrumb">User</router-link></li>
                 </ol>
             </nav>
         </div>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-
     let components = {
         'UserList': () => import('./UserListComponent'),
         'UserAdd': () => import('./UserAddComponent'),
@@ -34,6 +33,9 @@
             };
         },
         methods: {
+            goBreadcrumb(event){
+                this.$emit('goBreadcrumb', {href:event.currentTarget.getAttribute('href')});
+            },
             getSingleUser(data){
                 this.contentComponent = components.UserEdit;
             },
