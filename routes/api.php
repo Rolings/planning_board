@@ -34,3 +34,9 @@ Route::group(['middleware' => 'jwt','prefix' => 'user'], function () {
     Route::post('delete/{id}', 'UserController@logout');
 });
 
+Route::group(['middleware' => 'jwt','prefix' => 'role'], function () {
+    Route::post('list', function () {
+        return \App\Models\Role::all();
+    });
+});
+

@@ -32,13 +32,7 @@ class User extends Authenticatable
 
     public function getImageAttribute()
     {
-        return asset('storage/' . $this->attributes['image']);
+        return asset('storage/user/' . $this->attributes['image']);
     }
-
-    public function getRoleIdAttribute()
-    {
-        return Role::find($this->attributes['role_id'])->name;
-    }
-
 
 }

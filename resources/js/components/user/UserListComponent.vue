@@ -15,10 +15,10 @@
             <draggable :list="userList" :disabled="!enabled" class="list-group" ghost-class="ghost" :move="checkMove"
                        @start="dragging = true" @end="dragging = false">
                 <li v-for="( user, index ) in userList" class="mdl-list__item mdl-list__item--three-line"
-                    :key="user.name">
+                    :key="user.first_name">
                     <span class="mdl-list__item-primary-content">
                       <i class="material-icons">menu</i>
-                      <span>{{ user.name }}</span>
+                      <span>{{ user.first_name }}</span>
                       <span class="mdl-list__item-text-body">
                       </span>
                     </span>

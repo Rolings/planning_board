@@ -3,15 +3,7 @@
         <div>
             <h2><span class="badge badge-secondary">User</span></h2>
         </div>
-        <div class="menu-breadcrumbs">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><router-link to="/admin/dashboard" v-on:click.native="goBreadcrumb">Dashboard</router-link></li>
-                    <li class="breadcrumb-item"><router-link to="/admin/user" v-on:click.native="goBreadcrumb">User</router-link></li>
-                </ol>
-            </nav>
-        </div>
-
+        <b-breadcrumb :items="breadcrumb" v-on:click.native="goBreadcrumb"></b-breadcrumb>
         <div class="user-list" :is="contentComponent" @getInformationSelectUser="getSingleUser"></div>
     </div>
 </template>
@@ -28,6 +20,16 @@
         component: components,
         data() {
             return {
+                breadcrumb: [
+                    {
+                        text: 'Dashboard',
+                        href: '/admin/dashboard',
+                    },
+                    {
+                        text: 'User',
+                        href: '/admin/user',
+                    },
+                ],
                 componentsArray: components_name_list,
                 contentComponent: components.UserList,
             };
@@ -38,6 +40,8 @@
             },
             getSingleUser(data){
                 this.$store.dispatch('userSingle',{user_id:data.user_id});
+                this.$store.dispatch('getRoles');
+                this.breadcrumb.push({text:'Single',to:'#'});
                 this.contentComponent = components.UserEdit;
             },
             addUser :function () {

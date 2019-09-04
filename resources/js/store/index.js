@@ -12,7 +12,8 @@ const store = new Vuex.Store({
         full_menu: [],
         auth: [],
         userList: [],
-        userSingle: []
+        userSingle: [],
+        role:[]
     },
     getters: {
         menu: state => state.menu,
@@ -21,26 +22,16 @@ const store = new Vuex.Store({
         login: state => state.login,
         userList: state => state.userList,
         user: state => state.userSingle,
+        role: state => state.role,
     },
     mutations: {
-        setMenu(state, value) {
-            state.menu = value
-        },
-        setFullMenu(state, value) {
-            state.full_menu = value
-        },
-        setAuth(state, value) {
-            state.auth = value
-        },
-        setlogin(state, value) {
-            state.login = value
-        },
-        setUserList(state, value) {
-            state.userList = value
-        },
-        setUserSingle(state, value) {
-            state.userSingle = value
-        },
+        setMenu: (state, value) => state.menu = value,
+        setFullMenu: (state, value) => state.full_menu = value,
+        setAuth: (state, value) => state.auth = value,
+        setlogin: (state, value) => state.login = value,
+        setUserList: (state, value) => state.userList = value,
+        setUserSingle: (state, value) => state.userSingle = value,
+        setRole: (state, value) => state.role = value
     },
     actions: {
         getAuth(context, {current}) {
@@ -104,7 +95,13 @@ const store = new Vuex.Store({
                     location.href = '/';
             });
         },
-
+        getRoles(context){
+            axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            axios.post(window.base + '/api/role/list')
+                .then((resp) => {
+                    context.commit('setRole', resp.data)
+                }).catch(error => {console.log(error)});
+        },
         getUserList(context) {
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
             axios.post(window.base + '/api/user/list')
@@ -131,6 +128,8 @@ const store = new Vuex.Store({
         },
         userDelete(context, {id}) {
         },
+
+
 
     },
 
