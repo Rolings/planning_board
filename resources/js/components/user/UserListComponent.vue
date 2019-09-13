@@ -11,32 +11,39 @@
                 <i class="material-icons">filter_list</i>
             </button>
         </div>
-        <ul class="demo-list-three mdl-list">
-            <draggable :list="userList" :disabled="!enabled" class="list-group" ghost-class="ghost" :move="checkMove"
-                       @start="dragging = true" @end="dragging = false">
-                <li v-for="( user, index ) in userList" class="mdl-list__item mdl-list__item--three-line"
-                    :key="user.first_name">
-                    <span class="mdl-list__item-primary-content">
-                      <i class="material-icons">menu</i>
-                      <span>{{ user.first_name }}</span>
-                      <span class="mdl-list__item-text-body">
-                      </span>
-                    </span>
-                    <span class="mdl-list__item-secondary-action">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                                @click="getInformationSelectUser(user.id)">Edit</button>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                                @click="deleteSelectUser(user.id)">Delete</button>
-                </span>
-                </li>
-            </draggable>
-        </ul>
+        <section>
+            <div class="d-flex bd-highligh col-sm-12">
+                <div v-for="( user, index ) in userList" :key="user.first_name" class="p-2 flex-fill bd-highlight border border-success">
+                    <div class="col-sm-12">
+                        <div class="d-flex bd-highlight bd-highlight">
+                            <div class="p-2 bd-highlight">
+                                <div class="text-center">
+                                    <img :src="user.image" alt="..." class="rounded rounded-sm" width="100">
+                                </div>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <span class="mdl-list__item-primary-content">
+                                    <span>{{ user.first_name }}</span>
+                                    <span class="mdl-list__item-text-body"></span>
+                                </span>
+                            </div>
+                            <div class="p-2 bd-highlight">
+                                <span class="mdl-list__item-secondary-action">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="getInformationSelectUser(user.id)">Edit</button>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" @click="deleteSelectUser(user.id)">Delete</button>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
-    import {draggable} from 'vuedraggable/src/vuedraggable.js';
-
     export default {
         name: "UserListComponent",
         display: 'Simple',
