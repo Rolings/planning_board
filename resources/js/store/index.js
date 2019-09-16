@@ -39,12 +39,14 @@ const store = new Vuex.Store({
             axios.post(window.base + '/api/auth/check')
                 .then((resp) => {
                     context.commit('setAuth', resp.data);
-                    if (current.parh === '/') {
+                    if (current.parh.indexOf('/admin') + 1) {
                         location.href = '/admin/dashboard';
                     }
                 }).catch((error) => {
-                if (error.response.status === 401)
+                if (error.response.status === 401){
                     location.href = '/';
+                }
+
                 if (current.parh.indexOf('/admin') + 1) {
                     location.href = '/';
                 }
@@ -125,6 +127,14 @@ const store = new Vuex.Store({
         userAdd(context, {field}) {
         },
         userEdit(context, {data}) {
+            axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            axios.post(window.base + '/api/user/edit/' + data.user_id,data.form)
+                .then((resp) => {
+                    context.commit('setUserSingle', resp.data)
+                }).catch(error => {
+                if (error.response.status === 401)
+                    location.href = '/';
+            });
         },
         userDelete(context, {id}) {
         },

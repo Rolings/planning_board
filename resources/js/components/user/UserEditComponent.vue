@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="container">
-            <form @submit="save">
+        <div class="">
+            <form @submit="formSubmit">
                 <div class="row">
                     <div class="col-lg-4 pull-lg-8 text-xs-center">
                         <img  :src="user.image" class="m-x-auto img-fluid img-circle" alt="avatar">
@@ -16,31 +16,31 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">First name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" name="first_name" :value="user.first_name">
+                                <input class="form-control" type="text" name="first_name"  v-model="user.first_name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" name="last_name" :value="user.last_name">
+                                <input class="form-control" type="text" name="last_name" v-model="user.last_name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Email</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="email" name="email" :value="user.email">
+                                <input class="form-control" type="email" name="email" v-model="user.email">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Phone</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" name="phone" :value="user.phone" placeholder="Street">
+                                <input class="form-control" type="text" name="phone" v-model="user.phone" placeholder="Street">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Address</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="text" name="address" :value="user.address" placeholder="Street">
+                                <input class="form-control" type="text" name="address" v-model="user.address" placeholder="Street">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -52,13 +52,13 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Password</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="password" id="password" name="password" autocomplete="of" >
+                                <input class="form-control" type="password" id="password" name="password" autocomplete="off" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="password" id="confirm_password" name="confirm_password"  autocomplete="of" v-on:input="checkPassword" >
+                                <input class="form-control" type="password" id="confirm_password" name="confirm_password"  autocomplete="off"  >
                                 <small ref="password_confirm_error" class="d-none form-text text-muted alert alert-danger">Passwords do not match.</small>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                <button  type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </div>
                     </div>
@@ -79,8 +79,16 @@
 <script>
     export default {
         name: "UserEditComponent",
-        mounted() {
-
+        dara(){
+            return {
+                first_name:'',
+                last_name: '',
+                email: '',
+                phone: '',
+                address: '',
+                password: '',
+                confirm_password: '',
+            }
         },
         computed: {
             user() {
@@ -89,18 +97,11 @@
             },
         },
         methods: {
-            checkPassword(event){
-                console.log(this.password)
-                console.log(this.confirm_password)
-/*                if( this.password===this.confirm_password){
-
-                    this.$refs.password_confirm_error.display = 'block';
-                }*/
-            },
-            save(e) {
+            formSubmit(e) {
                 e.preventDefault();
-                if( this.password===this.confirm_password){
-                    this.$store.dispatch('userEdit', {
+                let data = {
+                    user_id: this.user.id,
+                    form: {
                         first_name: this.first_name,
                         last_name: this.last_name,
                         email: this.email,
@@ -108,8 +109,9 @@
                         address: this.address,
                         password: this.password,
                         confirm_password: this.confirm_password,
-                    });
-                }
+                    }
+                };
+                this.$store.dispatch('userEdit', data);
 
             }
         }

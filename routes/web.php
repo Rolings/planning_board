@@ -15,6 +15,7 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('dashboard');
 Route::get('/admin/{page?}', 'AdminController@index')->name('dashboard');
+Route::get('/admin/user/{id?}', 'AdminController@index')->name('id');
 Route::any('/logout', 'AuthController@logout');
 
 

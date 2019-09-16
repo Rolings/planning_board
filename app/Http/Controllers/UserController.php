@@ -41,7 +41,8 @@ class UserController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return User::find($id)->update($request->all());
+        return response()->json([$request->all()]);
+       // return User::find($id)->update($request->all());
     }
 
     public function delete(Request $request, $id)

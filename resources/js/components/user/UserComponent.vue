@@ -4,7 +4,10 @@
             <h2><span class="badge badge-secondary">User</span></h2>
         </div>
         <b-breadcrumb :items="breadcrumb" v-on:click.native="goBreadcrumb"></b-breadcrumb>
-        <div class="user-list" :is="contentComponent" @getInformationSelectUser="getSingleUser"></div>
+        <div class="container">
+            <div class="user-container" :is="contentComponent" @getInformationSelectUser="getSingleUser"></div>
+        </div>
+
     </div>
 </template>
 

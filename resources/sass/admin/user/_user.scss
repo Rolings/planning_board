@@ -6,41 +6,15 @@
 
 }
 
-.user-list {
+.user-container {
     display: block;
     padding: 10px;
 
-    .mdl-list {
-        li {
-            border-bottom: 1px solid #c6c7cd;
-            width: 100%;
-
-            &:hover {
-                background-color: rgba(0, 161, 210, 0.27);
-            }
-
-            &:last-child {
-                border-bottom: 0px;
-            }
-
-            .material-icons {
-                position: relative;
-                top: 5px;
-                margin: 5px;
-                cursor: grabbing;
-            }
+    .user-list{
+        .card{
+            margin: 10px;
         }
+
     }
 
-    .list-group {
-        overflow-y: auto;
-        max-height: 100vh;
-    }
-
-    .menu-action-form {
-
-        label {
-            color: #000;
-        }
-    }
 }
