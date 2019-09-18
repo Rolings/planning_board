@@ -51,6 +51,11 @@ class MenuController extends Controller
                 }
             }
         }
+
+        usort($this->menu, function($a, $b) {
+            return $a['order'] - $b['order'];
+        });
+
     }
 
     protected function getMenu()
@@ -59,7 +64,6 @@ class MenuController extends Controller
         foreach ($this->menu as $index_menu => $menu) {
             $this->createMenuTree($menu);
         }
-        $this->menu = array_reverse($this->menu);
     }
 
     public function index()

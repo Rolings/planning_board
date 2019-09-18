@@ -39,17 +39,15 @@ const store = new Vuex.Store({
             axios.post(window.base + '/api/auth/check')
                 .then((resp) => {
                     context.commit('setAuth', resp.data);
-                    if (current.parh.indexOf('/admin') + 1) {
+                    if (current.indexOf('/admin') + 1) {
                         location.href = '/admin/dashboard';
                     }
                 }).catch((error) => {
-                if (error.response.status === 401){
+
+                if (typeof error.response!=='undefined' && error.response.status === 401){
                     location.href = '/';
                 }
 
-                if (current.parh.indexOf('/admin') + 1) {
-                    location.href = '/';
-                }
             });
         },
         login(context, {email, password}) {
@@ -59,8 +57,10 @@ const store = new Vuex.Store({
                     localStorage.setItem('access_token', resp.data.access_token);
                     location.href = '/admin/dashboard';
                 }).catch(error => {
-                if (error.response.status === 401)
-                    location.href = '/';
+                if (typeof error.response!=='undefined' && error.response.status === 401){
+                     location.href = '/';
+                }
+
             });
         },
         logout(context) {
@@ -83,7 +83,7 @@ const store = new Vuex.Store({
                 .then((resp) => {
                     context.commit('setMenu', resp.data)
                 }).catch(error => {
-                if (error.response.status === 401)
+                if (typeof error.response!=='undefined' && error.response.status === 401)
                     location.href = '/';
             });
         },
@@ -93,7 +93,7 @@ const store = new Vuex.Store({
                 .then((resp) => {
                     context.commit('setFullMenu', resp.data)
                 }).catch(error => {
-                if (error.response.status === 401)
+                if (typeof error.response!=='undefined' && error.response.status === 401)
                     location.href = '/';
             });
         },
@@ -110,7 +110,7 @@ const store = new Vuex.Store({
                 .then((resp) => {
                     context.commit('setUserList', resp.data)
                 }).catch(error => {
-                if (error.response.status === 401)
+                if (typeof error.response!=='undefined' && error.response.status === 401)
                     location.href = '/';
             });
         },
@@ -120,7 +120,7 @@ const store = new Vuex.Store({
                 .then((resp) => {
                     context.commit('setUserSingle', resp.data)
                 }).catch(error => {
-                if (error.response.status === 401)
+                if (typeof error.response!=='undefined' &&  error.response.status === 401)
                     location.href = '/';
             });
         },
@@ -128,11 +128,12 @@ const store = new Vuex.Store({
         },
         userEdit(context, {data}) {
             axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            console.log(data.form)
             axios.post(window.base + '/api/user/edit/' + data.user_id,data.form)
                 .then((resp) => {
                     context.commit('setUserSingle', resp.data)
                 }).catch(error => {
-                if (error.response.status === 401)
+                if (typeof error.response!=='undefined' &&  error.response.status === 401)
                     location.href = '/';
             });
         },

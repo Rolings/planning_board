@@ -1,9 +1,7 @@
-import {SidebarMenu} from 'vue-sidebar-menu/src';
 
 require('./bootstrap');
 window.Vue = require('vue');
 import Vue from 'vue'
-import VueSidebarMenu from 'vue-sidebar-menu'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router';
 import routes from './routes';
@@ -20,7 +18,6 @@ library.add(faCoffee);
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
-Vue.use(VueSidebarMenu);
 Vue.use(BootstrapVue);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('index-component', require('./components/IndexComponent.vue').default);

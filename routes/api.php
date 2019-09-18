@@ -15,6 +15,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'AuthController@register');
     Route::post('check', 'AuthController@auth');
+
     Route::group(['middleware' => 'jwt'], function () {
         Route::post('logout', 'AuthController@logout');
     });

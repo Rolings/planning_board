@@ -3,21 +3,17 @@
         <div>
             <h2><span class="badge badge-secondary">Page</span></h2>
         </div>
-        <div class="menu-breadcrumbs">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><router-link to="/admin/dashboard" v-on:click.native="goBreadcrumb">Dashboard</router-link></li>
-                    <li class="breadcrumb-item"><router-link to="/admin/page" v-on:click.native="goBreadcrumb">Page</router-link></li>
-                </ol>
-            </nav>
-        </div>
     </div>
 </template>
-
 <script>
     export default {
-        name: "PageComponent"
-    }
+        name: 'Page',
+        computed: {
+            user() {
+                return this.$store.getters.auth;
+            },
+        },
+    };
 </script>
 
 <style scoped>

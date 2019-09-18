@@ -1,52 +1,51 @@
 <template>
     <div>
-        <div class="sidebar-block">
-            <SidebarMenu @goBreadcrumb="goBreadcrumb"></SidebarMenu>
-        </div>
-        <div class="content-block" @goBreadcrumb="goBreadcrumb" :is="currentComponent"  ></div>
+        <div :is="sidebar"></div>
+        <div :is="breadcrumb" @modify-breadcrumb="modifyBreadcrumb" :items="items"></div>
+        <div class="content-block" :is="content"></div>
     </div>
 </template>
 <script>
-    // Load components
-    let components = {
-        'SidebarMenu': () => import('../components/SidebarMenuComponent'),
-        'dashboard': () => import('../components/dashboard/DashboardComponent'),
-        'setting': () => import('./setting/SettingComponent'),
-        'menus': () => import('./setting/menu/MenuComponents'),
-        'page': () => import('../components/page/PageComponent'),
-        'user': () => import('../components/user/UserComponent'),
-        'system': () => import('../components/setting/SystemComponent'),
-        'permissions': () => import('./setting/PermissionComponent')
-    };
 
-    // Create array keys from components object
-    let components_name_list = Object.keys(components);
-
-    let currentUrl = document.URL.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
-    currentUrl = currentUrl[currentUrl.length - 1];
-    if (!components_name_list.includes(currentUrl))
-        currentUrl = 'dashboard';
     export default {
         name: 'UserAccountComponent',
-        components: components,
         data() {
             return {
-                componentsArray: components_name_list,
-                currentComponent: currentUrl
+                items: [
+                    {
+                        text: 'Dashboard',
+                        to: '/admin/dashboard'
+                    },
+                    {
+                        text: '',
+                        to: ''
+                    },
+                ],
+                sidebar: () => import('../components/SidebarMenuComponent'),
+                breadcrumb: () => import('../components/BreadcrumbComponent'),
+                content: () => import('../components/dashboard/DashboardComponent'),
             };
         },
         mounted() {
-            this.$store.dispatch('getAuth',{current: this.$router.currentRoute});
+            this.$store.dispatch('getAuth',{current: this.$router.currentRoute.path});
+        },
+        watch: {
+            '$route' (to, from) {
+                this.content = this.$router.currentRoute.matched[0].components.default;
+            }
         },
         methods: {
-            goBreadcrumb(data) {
-                let url = data.href.replace('https:', '').replace('http:', '').replace(window.base, '').split('/');
-                let select_menu = url[url.length - 1].trim();
-                if (this.componentsArray.includes(select_menu)) {
-                    this.currentComponent = select_menu;
+            modifyBreadcrumb(){
+                console.log( this.items[1]);
+                this.items[1] = {text:this.$router.currentRoute.name,to:this.$router.currentRoute.path};
+              //  this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});
+                console.log( this.items[1]);
+/*                console.log( this.items[1]);
+                if(typeof this.items[1]!=='undefined' ){
+                    delete this.items[1];
                 }
-                if (select_menu === 'logout')
-                    this.$store.dispatch('logout');
+                console.log( this.items[1]);
+                this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});*/
             }
         }
     };

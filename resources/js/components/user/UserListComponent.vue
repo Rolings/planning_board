@@ -47,7 +47,6 @@
         },
         methods: {
             getInformationSelectUser(user_id) {
-                this.$router.push({ path: `/user/${user_id}` });
                 this.$emit('getInformationSelectUser', {user_id: user_id});
             },
             deleteSelectUser(user_id) {

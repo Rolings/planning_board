@@ -1,13 +1,13 @@
 <template>
     <div>
         <div>
-            <h2><span class="badge badge-secondary">Dashboard</span></h2>
+            <h2><span class="badge badge-secondary">Smtp</span></h2>
         </div>
     </div>
 </template>
 <script>
     export default {
-        name: 'Dashboard',
+        name: 'Smtp',
         computed: {
             user() {
                 return this.$store.getters.auth;

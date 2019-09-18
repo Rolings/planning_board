@@ -41,13 +41,12 @@ class UserController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return response()->json([$request->all()]);
-       // return User::find($id)->update($request->all());
+        return User::where('id',$id)->update($request->all());
     }
 
     public function delete(Request $request, $id)
     {
-        return User::find($id)->delete();
+        return User::where('id',$id)->delete();
     }
 
 

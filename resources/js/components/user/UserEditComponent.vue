@@ -1,7 +1,11 @@
 <template>
     <div>
-        <div class="">
-            <form @submit="formSubmit">
+        <div>
+            <h2><span class="badge badge-secondary">User</span></h2>
+        </div>
+        <div class="container user-form">
+            <form @submit="formSubmit"  @reset="formReset" >
+                <input type="hidden" name="user_id"  v-model="user.id">
                 <div class="row">
                     <div class="col-lg-4 pull-lg-8 text-xs-center">
                         <img  :src="user.image" class="m-x-auto img-fluid img-circle" alt="avatar">
@@ -65,8 +69,8 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label"></label>
                             <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <button  type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="reset" class="btn btn-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +83,7 @@
 <script>
     export default {
         name: "UserEditComponent",
-        dara(){
+        data(){
             return {
                 first_name:'',
                 last_name: '',
@@ -90,28 +94,36 @@
                 confirm_password: '',
             }
         },
+        mounted() {
+            this.$store.dispatch('userSingle',{user_id:this.$router.currentRoute.params.user_id});
+        },
         computed: {
             user() {
-                this.role_select =  this.$store.getters.user.role_id;
                 return this.$store.getters.user;
             },
         },
         methods: {
+            formReset(e){
+                e.preventDefault();
+                this.$router.push({ path: '/admin/user'});
+
+            },
             formSubmit(e) {
                 e.preventDefault();
-                let data = {
-                    user_id: this.user.id,
+               let data = {
+                   user_id:this.$router.currentRoute.params.user_id,
                     form: {
-                        first_name: this.first_name,
-                        last_name: this.last_name,
-                        email: this.email,
-                        phone: this.phone,
-                        address: this.address,
-                        password: this.password,
-                        confirm_password: this.confirm_password,
+                        first_name: this.user.first_name,
+                        last_name: this.user.last_name,
+                        email: this.user.email,
+                        phone: this.user.phone,
+                        address: this.user.address,
+                        password: this.user.password,
+                        confirm_password: this.user.confirm_password,
                     }
                 };
-                this.$store.dispatch('userEdit', data);
+                this.$store.dispatch('userEdit', {data});
+                this.$router.push({ path: '/admin/user'});
 
             }
         }
