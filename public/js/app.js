@@ -11529,67 +11529,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAccountComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'UserAccountComponent',
-  data: function data() {
-    return {
-      items: [{
-        text: 'Dashboard',
-        to: '/admin/dashboard'
-      }, {
-        text: '',
-        to: ''
-      }],
-      sidebar: function sidebar() {
-        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/SidebarMenuComponent */ "./resources/js/components/SidebarMenuComponent.vue"));
-      },
-      breadcrumb: function breadcrumb() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.vue"));
-      },
-      content: function content() {
-        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
-      }
-    };
-  },
-  mounted: function mounted() {
-    this.$store.dispatch('getAuth', {
-      current: this.$router.currentRoute.path
-    });
-  },
-  watch: {
-    '$route': function $route(to, from) {
-      this.content = this.$router.currentRoute.matched[0].components["default"];
-    }
-  },
-  methods: {
-    modifyBreadcrumb: function modifyBreadcrumb() {
-      console.log(this.items[1]);
-      this.items[1] = {
-        text: this.$router.currentRoute.name,
-        to: this.$router.currentRoute.path
-      }; //  this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});
-
-      console.log(this.items[1]);
-      /*                console.log( this.items[1]);
-                      if(typeof this.items[1]!=='undefined' ){
-                          delete this.items[1];
-                      }
-                      console.log( this.items[1]);
-                      this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});*/
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\xampp\\htdocs\\planning_board\\resources\\js\\components\\UserAccountComponent.vue: Unexpected token (9:15)\n\n\u001b[0m \u001b[90m  7 | \u001b[39m\u001b[90m//\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m\u001b[36mimport\u001b[39m sidebar im\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m    \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m        name\u001b[33m:\u001b[39m \u001b[32m'UserAccountComponent'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m        data() {\u001b[0m\n    at Parser.raise (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:6325:17)\n    at Parser.unexpected (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:7642:16)\n    at Parser.expectContextual (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:7608:41)\n    at Parser.parseImport (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11168:12)\n    at Parser.parseStatementContent (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9927:27)\n    at Parser.parseStatement (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9829:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:10405:25)\n    at Parser.parseBlockBody (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:10392:10)\n    at Parser.parseTopLevel (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9758:10)\n    at Parser.parse (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11270:17)\n    at parse (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11306:38)\n    at parser (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:170:34)\n    at normalizeFile (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:138:11)\n    at runSync (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)\n    at runAsync (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\index.js:35:14)\n    at process.nextTick (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
 
 /***/ }),
 
@@ -92524,77 +92466,77 @@ var routes = [{
   name: 'Dashboard',
   path: '/admin/dashboard/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
   },
   props: true
 }, {
   name: 'Users',
   path: '/admin/users',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
   },
   props: true
 }, {
   name: 'User',
   path: '/admin/user/:user_id',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
   },
   props: true
 }, {
   name: 'Setting',
   path: '/admin/setting/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
   },
   props: true
 }, {
   name: 'Menu',
   path: '/admin/menu/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
   },
   props: true
 }, {
   name: 'Page',
   path: '/admin/page/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
   },
   props: true
 }, {
   name: 'System',
   path: '/admin/system/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/setting/SystemComponent */ "./resources/js/components/setting/SystemComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/setting/SystemComponent */ "./resources/js/components/setting/SystemComponent.vue"));
   },
   props: true
 }, {
   name: 'Permission',
   path: '/admin/permission/',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/setting/PermissionComponent */ "./resources/js/components/setting/PermissionComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/setting/PermissionComponent */ "./resources/js/components/setting/PermissionComponent.vue"));
   },
   props: true
 }, {
   name: 'Smtp',
   path: '/admin/smtp',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ../components/setting/SmtpComponent */ "./resources/js/components/setting/SmtpComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/setting/SmtpComponent */ "./resources/js/components/setting/SmtpComponent.vue"));
   },
   props: true
 }, {
   name: 'Imap',
   path: '/admin/imap',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/setting/ImapComponent */ "./resources/js/components/setting/ImapComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/setting/ImapComponent */ "./resources/js/components/setting/ImapComponent.vue"));
   },
   props: true
 }, {
   name: 'Mail',
   path: '/admin/mail',
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ../components/setting/MailComponent */ "./resources/js/components/setting/MailComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/setting/MailComponent */ "./resources/js/components/setting/MailComponent.vue"));
   },
   props: true
 }];
