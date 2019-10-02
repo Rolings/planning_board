@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-import sidebar im
+
     export default {
         name: 'UserAccountComponent',
         data() {
@@ -36,8 +36,6 @@ import sidebar im
         },
         methods: {
             modifyBreadcrumb(){
-                console.log( this.items[1]);
-                this.items[1] = {text:this.$router.currentRoute.name,to:this.$router.currentRoute.path};
                 this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});
             }
         }

@@ -11529,9 +11529,58 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserAccountComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: G:\\xampp\\htdocs\\planning_board\\resources\\js\\components\\UserAccountComponent.vue: Unexpected token (9:15)\n\n\u001b[0m \u001b[90m  7 | \u001b[39m\u001b[90m//\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  8 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 | \u001b[39m\u001b[36mimport\u001b[39m sidebar im\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 10 | \u001b[39m    \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 11 | \u001b[39m        name\u001b[33m:\u001b[39m \u001b[32m'UserAccountComponent'\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m        data() {\u001b[0m\n    at Parser.raise (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:6325:17)\n    at Parser.unexpected (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:7642:16)\n    at Parser.expectContextual (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:7608:41)\n    at Parser.parseImport (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11168:12)\n    at Parser.parseStatementContent (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9927:27)\n    at Parser.parseStatement (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9829:17)\n    at Parser.parseBlockOrModuleBlockBody (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:10405:25)\n    at Parser.parseBlockBody (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:10392:10)\n    at Parser.parseTopLevel (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:9758:10)\n    at Parser.parse (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11270:17)\n    at parse (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\parser\\lib\\index.js:11306:38)\n    at parser (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:170:34)\n    at normalizeFile (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:138:11)\n    at runSync (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\index.js:44:43)\n    at runAsync (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transformation\\index.js:35:14)\n    at process.nextTick (G:\\xampp\\htdocs\\planning_board\\node_modules\\@babel\\core\\lib\\transform.js:34:34)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'UserAccountComponent',
+  data: function data() {
+    return {
+      items: [{
+        text: 'Dashboard',
+        to: '/admin/dashboard'
+      }, {
+        text: '',
+        to: ''
+      }],
+      sidebar: function sidebar() {
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ../components/SidebarMenuComponent */ "./resources/js/components/SidebarMenuComponent.vue"));
+      },
+      breadcrumb: function breadcrumb() {
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ../components/BreadcrumbComponent */ "./resources/js/components/BreadcrumbComponent.vue"));
+      },
+      content: function content() {
+        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.$store.dispatch('getAuth', {
+      current: this.$router.currentRoute.path
+    });
+  },
+  watch: {
+    '$route': function $route(to, from) {
+      this.content = this.$router.currentRoute.matched[0].components["default"];
+    }
+  },
+  methods: {
+    modifyBreadcrumb: function modifyBreadcrumb() {
+      this.items.push({
+        text: this.$router.currentRoute.name,
+        to: this.$router.currentRoute.path
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -32033,7 +32082,7 @@ var VBTooltip = {
 /*!*************************************************!*\
   !*** ./node_modules/bootstrap-vue/esm/index.js ***!
   \*************************************************/
-/*! exports provided: componentsPlugin, BVModalPlugin, BVToastPlugin, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormSelectPlugin, BFormSelect, FormTextareaPlugin, BFormTextarea, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, TableLitePlugin, TableSimplePlugin, BTable, BTableLite, BTableSimple, BTbody, BThead, BTfoot, BTr, BTh, BTd, TabsPlugin, BTabs, BTab, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, directivesPlugin, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip, install, NAME, BVConfigPlugin, BVConfig, BootstrapVue, default */
+/*! exports provided: install, NAME, BVConfigPlugin, BVConfig, BootstrapVue, default, componentsPlugin, BVModalPlugin, BVToastPlugin, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormSelectPlugin, BFormSelect, FormTextareaPlugin, BFormTextarea, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, TableLitePlugin, TableSimplePlugin, BTable, BTableLite, BTableSimple, BTbody, BThead, BTfoot, BTr, BTh, BTd, TabsPlugin, BTabs, BTab, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, directivesPlugin, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92230,6 +92279,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _forta
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('index-component', __webpack_require__(/*! ./components/IndexComponent.vue */ "./resources/js/components/IndexComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-account', __webpack_require__(/*! ./components/UserAccountComponent.vue */ "./resources/js/components/UserAccountComponent.vue")["default"]);
 var url = window.baseUrl;
+var index_s = 1;
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"],
   base: url,
@@ -92238,7 +92288,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: router,
-  store: _store__WEBPACK_IMPORTED_MODULE_11__["default"]
+  store: _store__WEBPACK_IMPORTED_MODULE_11__["default"],
+  index_s: index_s
 });
 
 /***/ }),
