@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div :is="sidebar"></div>
-        <div :is="breadcrumb" @modify-breadcrumb="modifyBreadcrumb" :items="items"></div>
-        <div class="content-block" :is="content"></div>
+        <component :is="sidebar"></component>
+        <component :is="breadcrumb" @modify-breadcrumb="modifyBreadcrumb" :items="items"></component>
+        <component class="content-block" :is="content"></component>
     </div>
 </template>
 <script>
@@ -21,12 +21,32 @@
                         to: ''
                     },
                 ],
-                sidebar: () => import('../components/SidebarMenuComponent'),
-                breadcrumb: () => import('../components/BreadcrumbComponent'),
-                content: () => import('../components/dashboard/DashboardComponent'),
+                sidebar: null,
+                breadcrumb: null,
+                content: null,
             };
         },
+        computed: {
+            loaderSidebar() {
+                return () => import('../components/SidebarMenuComponent')
+            },
+            loaderBreadcrumb() {
+                return () => import('../components/BreadcrumbComponent')
+            },
+            loaderContent() {
+                return () => import('../components/dashboard/DashboardComponent')
+            },
+        },
         mounted() {
+            this.loaderSidebar()
+                .then(() => { this.sidebar = () => this.loaderSidebar() })
+                .catch(() => { this.sidebar = () => import('../components/SidebarMenuComponent') });
+            this.loaderBreadcrumb()
+                .then(() => { this.breadcrumb = () => this.loaderBreadcrumb() })
+                .catch(() => { this.breadcrumb = () => import('../components/BreadcrumbComponent') });
+            this.loaderContent()
+                .then(() => { this.content = () => this.loaderContent() })
+                .catch(() => { this.content = () => import('../components/dashboard/DashboardComponent') });
             this.$store.dispatch('getAuth',{current: this.$router.currentRoute.path});
         },
         watch: {
