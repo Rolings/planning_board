@@ -51,7 +51,7 @@
         },
         data() {
             return {
-                index: this.$index_s++
+                index: 0
             };
         },
         mounted() {

@@ -11,19 +11,13 @@
         name: 'UserAccountComponent',
         data() {
             return {
-                items: [
-                    {
-                        text: 'Dashboard',
-                        to: '/admin/dashboard'
-                    },
-                    {
-                        text: '',
-                        to: ''
-                    },
-                ],
+                breadcrumb_list :[],
+                items: [{text: 'Dashboard', to: '/admin/dashboard'}],
                 sidebar: null,
                 breadcrumb: null,
                 content: null,
+                full_menu: null,
+                current_path: null,
             };
         },
         computed: {
@@ -51,12 +45,34 @@
         },
         watch: {
             '$route' (to, from) {
-                this.content = this.$router.currentRoute.matched[0].components.default;
+                console.log(this.$router.options.routes);
+                console.log(this.$router.currentRoute);
+                console.log(this.$route.component.layout);
+                  //  this.content = this.$router.currentRoute.matched[0].components.default;
+                    this.full_menu = this.$store.getters.menu;
+                    this.current_path = this.$router.currentRoute.fullPath;
             }
         },
         methods: {
+            menuFound(menu, path,parent=null) {
+                for (let i in menu) {
+                    if (menu[i].href === path) {
+                        if(parent!==null){
+                            this.items.push(parent);
+                        }
+                        this.items.push({text: menu[i].title, to: menu[i].href});
+                    } else
+                        if (typeof (menu[i].child) !== "undefined") {
+                        this.menuFound(menu[i].child, path,{text: menu[i].title, to: menu[i].href})
+                    }
+
+                }
+            },
             modifyBreadcrumb(){
-                this.items.push({text:this.$router.currentRoute.name,to:this.$router.currentRoute.path});
+                this.items= [];
+                this.menuFound(this.full_menu,this.current_path,null);
+                this.items.unshift({text: 'Dashboard', to: '/admin/dashboard'});
+
             }
         }
     };

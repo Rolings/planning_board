@@ -11544,16 +11544,16 @@ __webpack_require__.r(__webpack_exports__);
   name: 'UserAccountComponent',
   data: function data() {
     return {
+      breadcrumb_list: [],
       items: [{
         text: 'Dashboard',
         to: '/admin/dashboard'
-      }, {
-        text: '',
-        to: ''
       }],
       sidebar: null,
       breadcrumb: null,
-      content: null
+      content: null,
+      full_menu: null,
+      current_path: null
     };
   },
   computed: {
@@ -11609,14 +11609,42 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     '$route': function $route(to, from) {
-      this.content = this.$router.currentRoute.matched[0].components["default"];
+      console.log(this.$router.options.routes);
+      console.log(this.$router.currentRoute);
+      console.log(this.$route.component.layout); //  this.content = this.$router.currentRoute.matched[0].components.default;
+
+      this.full_menu = this.$store.getters.menu;
+      this.current_path = this.$router.currentRoute.fullPath;
     }
   },
   methods: {
+    menuFound: function menuFound(menu, path) {
+      var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+      for (var i in menu) {
+        if (menu[i].href === path) {
+          if (parent !== null) {
+            this.items.push(parent);
+          }
+
+          this.items.push({
+            text: menu[i].title,
+            to: menu[i].href
+          });
+        } else if (typeof menu[i].child !== "undefined") {
+          this.menuFound(menu[i].child, path, {
+            text: menu[i].title,
+            to: menu[i].href
+          });
+        }
+      }
+    },
     modifyBreadcrumb: function modifyBreadcrumb() {
-      this.items.push({
-        text: this.$router.currentRoute.name,
-        to: this.$router.currentRoute.path
+      this.items = [];
+      this.menuFound(this.full_menu, this.current_path, null);
+      this.items.unshift({
+        text: 'Dashboard',
+        to: '/admin/dashboard'
       });
     }
   }
@@ -92555,56 +92583,58 @@ var routes = [{
   props: true
 }, {
   name: 'Dashboard',
-  path: '/admin/dashboard/',
+  path: '/admin/dashboard',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
   },
   props: true
 }, {
-  name: 'Users',
-  path: '/admin/users',
+  //  name: 'Users',
+  //  name: 'Users',
+  path: '/admin/users/:user_id',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
   },
-  props: true
-}, {
-  name: 'User',
-  path: '/admin/user/:user_id',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
-  },
-  props: true
+  props: true,
+  children: [{
+    // name: 'Users',
+    path: '',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
+    },
+    props: true
+  }]
 }, {
   name: 'Setting',
-  path: '/admin/setting/',
+  path: '/admin/setting',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
   },
   props: true
 }, {
   name: 'Menu',
-  path: '/admin/menu/',
+  path: '/admin/menu',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
   },
   props: true
 }, {
   name: 'Page',
-  path: '/admin/page/',
+  path: '/admin/page',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
   },
   props: true
 }, {
   name: 'System',
-  path: '/admin/system/',
+  path: '/admin/system',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/setting/SystemComponent */ "./resources/js/components/setting/SystemComponent.vue"));
   },
   props: true
 }, {
   name: 'Permission',
-  path: '/admin/permission/',
+  path: '/admin/permission',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/setting/PermissionComponent */ "./resources/js/components/setting/PermissionComponent.vue"));
   },
@@ -92631,7 +92661,7 @@ var routes = [{
   },
   props: true
 }];
-/* harmony default export */ __webpack_exports__["default"] = (routes);
+/* harmony default export */ __webpack_exports__["default"] = (routes); //{name:'Users',path: '/admin/user/:user_id', component: () => import('../components/user/UserEditComponent'), props: true},
 
 /***/ }),
 

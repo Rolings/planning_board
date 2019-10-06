@@ -105,7 +105,7 @@
         methods: {
             formReset(e){
                 e.preventDefault();
-                this.$router.push({ path: '/admin/user'});
+                this.$router.push({ path: '/admin/users'});
 
             },
             formSubmit(e) {
