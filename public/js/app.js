@@ -11609,10 +11609,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     '$route': function $route(to, from) {
-      console.log(this.$router.options.routes);
-      console.log(this.$router.currentRoute);
-      console.log(this.$route.component.layout); //  this.content = this.$router.currentRoute.matched[0].components.default;
-
+      /*             console.log(this.$router.options.routes);
+                   console.log(this.$router.currentRoute);
+                   console.log(this.$route.component.layout);*/
+      this.content = this.$router.currentRoute.matched[0].components["default"];
       this.full_menu = this.$store.getters.menu;
       this.current_path = this.$router.currentRoute.fullPath;
     }
@@ -92589,21 +92589,19 @@ var routes = [{
   },
   props: true
 }, {
-  //  name: 'Users',
-  //  name: 'Users',
-  path: '/admin/users/:user_id',
+  name: 'Users',
+  path: '/admin/users/',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
   },
-  props: true,
-  children: [{
-    // name: 'Users',
-    path: '',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
-    },
-    props: true
-  }]
+  props: true
+}, {
+  name: 'User',
+  path: '/admin/user/:user_id',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
+  },
+  props: true
 }, {
   name: 'Setting',
   path: '/admin/setting',
@@ -92661,7 +92659,7 @@ var routes = [{
   },
   props: true
 }];
-/* harmony default export */ __webpack_exports__["default"] = (routes); //{name:'Users',path: '/admin/user/:user_id', component: () => import('../components/user/UserEditComponent'), props: true},
+/* harmony default export */ __webpack_exports__["default"] = (routes); //
 
 /***/ }),
 
@@ -92691,7 +92689,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     auth: [],
     userList: [],
     userSingle: [],
-    role: []
+    role: [],
+    permissions: []
   },
   getters: {
     menu: function menu(state) {
@@ -92714,6 +92713,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     role: function role(state) {
       return state.role;
+    },
+    permissions: function permissions(state) {
+      return state.permissions;
     }
   },
   mutations: {
@@ -92737,6 +92739,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     setRole: function setRole(state, value) {
       return state.role = value;
+    },
+    setPermissions: function setPermissions(state, value) {
+      return state.permissions = value;
     }
   },
   actions: {
@@ -92838,6 +92843,14 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     userDelete: function userDelete(context, _ref6) {
       var id = _ref6.id;
+    },
+    getPermissions: function getPermissions() {
+      axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+      axios.post(window.base + '/api/permissions/role').then(function (resp) {
+        context.commit('setPermissions', resp.data);
+      })["catch"](function (error) {
+        if (typeof error.response !== 'undefined' && error.response.status === 401) location.href = '/';
+      });
     }
   }
 });

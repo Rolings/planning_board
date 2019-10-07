@@ -8,7 +8,7 @@
         watch: {
             '$route' (to, from) {
 
-              //  this.content = this.$router.currentRoute.matched[0].components.default;
+                this.content = this.$router.currentRoute.matched[0].components.default;
                 this.modify();
             }
         },

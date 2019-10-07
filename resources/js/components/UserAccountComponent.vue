@@ -45,10 +45,12 @@
         },
         watch: {
             '$route' (to, from) {
-                console.log(this.$router.options.routes);
+   /*             console.log(this.$router.options.routes);
                 console.log(this.$router.currentRoute);
-                console.log(this.$route.component.layout);
-                  //  this.content = this.$router.currentRoute.matched[0].components.default;
+                console.log(this.$route.component.layout);*/
+
+
+                    this.content = this.$router.currentRoute.matched[0].components.default;
                     this.full_menu = this.$store.getters.menu;
                     this.current_path = this.$router.currentRoute.fullPath;
             }

@@ -18,9 +18,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Permission',
+  mounted: function mounted() {
+    this.$store.dispatch('getPermissions');
+  },
   computed: {
     user: function user() {
-      return this.$store.getters.auth;
+      console.log(this.$store.getters.permissions);
     }
   }
 });

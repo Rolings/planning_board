@@ -19,7 +19,7 @@
         },
         methods: {
             getSingleUser(data){
-                this.$router.push({ path: `/admin/users/${data.user_id}` });
+                this.$router.push({ path: `/admin/user/${data.user_id}` });
             },
             addUser :function () {
 

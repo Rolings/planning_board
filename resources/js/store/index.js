@@ -13,7 +13,8 @@ const store = new Vuex.Store({
         auth: [],
         userList: [],
         userSingle: [],
-        role:[]
+        role:[],
+        permissions :[],
     },
     getters: {
         menu: state => state.menu,
@@ -23,6 +24,7 @@ const store = new Vuex.Store({
         userList: state => state.userList,
         user: state => state.userSingle,
         role: state => state.role,
+        permissions : state => state.permissions,
     },
     mutations: {
         setMenu: (state, value) => state.menu = value,
@@ -31,7 +33,8 @@ const store = new Vuex.Store({
         setlogin: (state, value) => state.login = value,
         setUserList: (state, value) => state.userList = value,
         setUserSingle: (state, value) => state.userSingle = value,
-        setRole: (state, value) => state.role = value
+        setRole: (state, value) => state.role = value,
+        setPermissions: (state, value) => state.permissions = value
     },
     actions: {
         getAuth(context, {current}) {
@@ -139,9 +142,17 @@ const store = new Vuex.Store({
         },
         userDelete(context, {id}) {
         },
+        getPermissions(){
+            axios.defaults.headers.common['Authorization'] = 'bearer ' + localStorage.getItem('access_token');
+            axios.post(window.base + '/api/permissions/role')
+                .then((resp) => {
 
-
-
+                    context.commit('setPermissions', resp.data)
+                }).catch(error => {
+                if (typeof error.response!=='undefined' &&  error.response.status === 401)
+                    location.href = '/';
+            });
+        }
     },
 
 });

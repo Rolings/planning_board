@@ -8,9 +8,12 @@
 <script>
     export default {
         name: 'Permission',
+        mounted() {
+            this.$store.dispatch('getPermissions');
+        },
         computed: {
             user() {
-                return this.$store.getters.auth;
+                console.log(this.$store.getters.permissions);
             },
         },
     };

@@ -41,3 +41,8 @@ Route::group(['middleware' => 'jwt','prefix' => 'role'], function () {
     });
 });
 
+Route::group(['middleware' => 'jwt','prefix' => 'permissions'], function () {
+    Route::post('role', 'Permissions@getRole');
+});
+
+

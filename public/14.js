@@ -32,7 +32,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getSingleUser: function getSingleUser(data) {
       this.$router.push({
-        path: "/admin/users/".concat(data.user_id)
+        path: "/admin/user/".concat(data.user_id)
       });
     },
     addUser: function addUser() {},

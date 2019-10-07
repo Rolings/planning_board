@@ -193,7 +193,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getSingleUser: function getSingleUser(data) {
       this.$router.push({
-        path: "/admin/users/".concat(data.user_id)
+        path: "/admin/user/".concat(data.user_id)
       });
     },
     addUser: function addUser() {},
@@ -4745,9 +4745,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Permission',
+  mounted: function mounted() {
+    this.$store.dispatch('getPermissions');
+  },
   computed: {
     user: function user() {
-      return this.$store.getters.auth;
+      console.log(this.$store.getters.permissions);
     }
   }
 });__webpack_require__.r(__webpack_exports__);
@@ -5775,7 +5778,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['items'],
   watch: {
     '$route': function $route(to, from) {
-      //  this.content = this.$router.currentRoute.matched[0].components.default;
+      this.content = this.$router.currentRoute.matched[0].components["default"];
       this.modify();
     }
   },
