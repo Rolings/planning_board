@@ -11608,13 +11608,17 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   watch: {
-    '$route': function $route(to, from) {
-      /*             console.log(this.$router.options.routes);
-                   console.log(this.$router.currentRoute);
-                   console.log(this.$route.component.layout);*/
-      this.content = this.$router.currentRoute.matched[0].components["default"];
-      this.full_menu = this.$store.getters.menu;
-      this.current_path = this.$router.currentRoute.fullPath;
+    $route: function $route(to, from) {
+      var components = this.$router.options.routes;
+      console.log(this.$router.currentRoute);
+
+      for (var n in this.$router.options.routes) {
+        if (components[n].path === this.$route.path) {
+          this.content = components[n].component;
+          this.full_menu = this.$store.getters.menu;
+          this.current_path = this.$router.currentRoute.fullPath;
+        }
+      }
     }
   },
   methods: {
@@ -92347,7 +92351,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('font-awesome-icon', _forta
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('index-component', __webpack_require__(/*! ./components/IndexComponent.vue */ "./resources/js/components/IndexComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-account', __webpack_require__(/*! ./components/UserAccountComponent.vue */ "./resources/js/components/UserAccountComponent.vue")["default"]);
 var url = window.baseUrl;
-var index_s = 1;
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__["default"],
   base: url,
@@ -92356,8 +92359,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: router,
-  store: _store__WEBPACK_IMPORTED_MODULE_11__["default"],
-  index_s: index_s
+  store: _store__WEBPACK_IMPORTED_MODULE_11__["default"]
 });
 
 /***/ }),
@@ -92589,20 +92591,21 @@ var routes = [{
   },
   props: true
 }, {
-  name: 'Users',
-  path: '/admin/users/',
+  path: '/admin/user/:user_id',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
   },
-  props: true
-}, {
-  name: 'User',
-  path: '/admin/user/:user_id',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
-  },
-  props: true
-}, {
+  props: true,
+  children: [{
+    name: 'Users',
+    path: '',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
+    },
+    props: true
+  }]
+}, // {name: 'User',path: '/admin/user/:user_id', component: () => import('../components/user/UserEditComponent'), props: true},
+{
   name: 'Setting',
   path: '/admin/setting',
   component: function component() {
@@ -92611,7 +92614,7 @@ var routes = [{
   props: true
 }, {
   name: 'Menu',
-  path: '/admin/menu',
+  path: '/admin/menus',
   component: function component() {
     return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
   },
@@ -92887,9 +92890,9 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
-module.exports = __webpack_require__(/*! G:\xampp\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! D:\htdocs\planning_board\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! D:\htdocs\planning_board\resources\sass\admin\main.scss */"./resources/sass/admin/main.scss");
+module.exports = __webpack_require__(/*! D:\htdocs\planning_board\resources\sass\main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

@@ -6,7 +6,6 @@
     </div>
 </template>
 <script>
-
     export default {
         name: 'UserAccountComponent',
         data() {
@@ -44,18 +43,25 @@
             this.$store.dispatch('getAuth',{current: this.$router.currentRoute.path});
         },
         watch: {
-            '$route' (to, from) {
-   /*             console.log(this.$router.options.routes);
-                console.log(this.$router.currentRoute);
-                console.log(this.$route.component.layout);*/
+            $route(to, from) {
+                let components = this.$router.options.routes;
+
+                console.log(this.$router.currentRoute)
 
 
-                    this.content = this.$router.currentRoute.matched[0].components.default;
-                    this.full_menu = this.$store.getters.menu;
-                    this.current_path = this.$router.currentRoute.fullPath;
+                for(let n in this.$router.options.routes){
+                    if(components[n].path===this.$route.path){
+                        this.content = components[n].component;
+                        this.full_menu = this.$store.getters.menu;
+                        this.current_path = this.$router.currentRoute.fullPath;
+                    }
+
+                }
             }
         },
         methods: {
+
+
             menuFound(menu, path,parent=null) {
                 for (let i in menu) {
                     if (menu[i].href === path) {

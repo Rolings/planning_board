@@ -24,7 +24,6 @@ Vue.component('index-component', require('./components/IndexComponent.vue').defa
 Vue.component('user-account', require('./components/UserAccountComponent.vue').default);
 
 const url =  window.baseUrl;
-let index_s = 1;
 const router = new VueRouter({
     routes,
     base: url,
@@ -35,6 +34,5 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-    index_s
 
 });
