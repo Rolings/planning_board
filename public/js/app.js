@@ -11609,19 +11609,49 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     $route: function $route(to, from) {
-      var components = this.$router.options.routes;
-      console.log(this.$router.currentRoute);
+      var components = this.$router.options.routes; //  console.log(this.$router.currentRoute)
 
-      for (var n in this.$router.options.routes) {
-        if (components[n].path === this.$route.path) {
-          this.content = components[n].component;
-          this.full_menu = this.$store.getters.menu;
-          this.current_path = this.$router.currentRoute.fullPath;
-        }
-      }
+      /*             console.log(this.$router.options.routes)
+                   */
+      //  console.log(components)
+      //   console.log(this.$route.path)
+      //this.getComponent(components,this.$route.path)
+
+      this.content = this.getComponent(components, this.$route.path);
+      this.full_menu = this.$store.getters.menu;
+      this.current_path = this.$router.currentRoute.fullPath;
+      /*                for(let n in components){
+                          if(components[n].props.path===this.$route.path){
+                              this.content = components[n].props.component;
+                              this.full_menu = this.$store.getters.menu;
+                              this.current_path = this.$router.currentRoute.fullPath;
+                          }
+      
+                      }*/
     }
   },
   methods: {
+    getComponent: function getComponent(components, current_path) {
+      for (var i in components) {
+        if (typeof components[i].children == 'undefined') {
+          if (components[i].props.path == current_path) {
+            return components[i].props.component;
+          }
+        } else {
+          if (components[i].props.path == current_path) {
+            return components[i].props.component;
+          } else {
+            return this.getComponent(components[i].children, current_path);
+          }
+        }
+        /*
+                            if (typeof components[i].children !== 'undefined') {
+                                console.log('Children found ',components[i].children)
+                                return this.getComponent(components[i].children, current_path);
+                            }*/
+
+      }
+    },
     menuFound: function menuFound(menu, path) {
       var parent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 
@@ -92569,98 +92599,151 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var components = {
+  IndexComponent: function IndexComponent() {
+    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../components/IndexComponent */ "./resources/js/components/IndexComponent.vue"));
+  },
+  UserAccountComponent: function UserAccountComponent() {
+    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../components/UserAccountComponent */ "./resources/js/components/UserAccountComponent.vue"));
+  },
+  DashboardComponent: function DashboardComponent() {
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
+  },
+  UserComponent: function UserComponent() {
+    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
+  },
+  UserEditComponent: function UserEditComponent() {
+    return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
+  },
+  SettingComponent: function SettingComponent() {
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
+  },
+  MenuComponents: function MenuComponents() {
+    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
+  },
+  PageComponent: function PageComponent() {
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
+  },
+  SystemComponent: function SystemComponent() {
+    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/setting/SystemComponent */ "./resources/js/components/setting/SystemComponent.vue"));
+  },
+  PermissionComponent: function PermissionComponent() {
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/setting/PermissionComponent */ "./resources/js/components/setting/PermissionComponent.vue"));
+  },
+  SmtpComponent: function SmtpComponent() {
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/setting/SmtpComponent */ "./resources/js/components/setting/SmtpComponent.vue"));
+  },
+  ImapComponent: function ImapComponent() {
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/setting/ImapComponent */ "./resources/js/components/setting/ImapComponent.vue"));
+  },
+  MailComponent: function MailComponent() {
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/setting/MailComponent */ "./resources/js/components/setting/MailComponent.vue"));
+  }
+};
 var routes = [{
   name: 'Login',
   path: '/',
-  component: function component() {
-    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../components/IndexComponent */ "./resources/js/components/IndexComponent.vue"));
-  },
-  props: true
+  component: components.IndexComponent,
+  props: {
+    path: '/',
+    component: components.IndexComponent
+  }
 }, {
   name: 'Admin',
   path: '/admin',
-  component: function component() {
-    return Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ../components/UserAccountComponent */ "./resources/js/components/UserAccountComponent.vue"));
-  },
-  props: true
+  component: components.UserAccountComponent,
+  props: {
+    path: '/admin',
+    component: components.UserAccountComponent
+  }
 }, {
   name: 'Dashboard',
   path: '/admin/dashboard',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ../components/dashboard/DashboardComponent */ "./resources/js/components/dashboard/DashboardComponent.vue"));
-  },
-  props: true
+  component: components.DashboardComponent,
+  props: {
+    path: '/admin/dashboard',
+    component: components.DashboardComponent
+  }
 }, {
   path: '/admin/user/:user_id',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ../components/user/UserComponent */ "./resources/js/components/user/UserComponent.vue"));
+  component: components.UserComponent,
+  props: {
+    path: '/admin/user',
+    component: components.UserComponent
   },
-  props: true,
   children: [{
     name: 'Users',
     path: '',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ../components/user/UserEditComponent */ "./resources/js/components/user/UserEditComponent.vue"));
-    },
-    props: true
+    component: components.UserEditComponent,
+    props: {
+      path: '',
+      component: components.UserEditComponent
+    }
   }]
-}, // {name: 'User',path: '/admin/user/:user_id', component: () => import('../components/user/UserEditComponent'), props: true},
-{
+}, {
   name: 'Setting',
   path: '/admin/setting',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ../components/setting/SettingComponent */ "./resources/js/components/setting/SettingComponent.vue"));
-  },
-  props: true
+  component: components.SettingComponent,
+  props: {
+    path: '/admin/setting',
+    component: components.SettingComponent
+  }
 }, {
   name: 'Menu',
   path: '/admin/menus',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ../components/setting/menu/MenuComponents */ "./resources/js/components/setting/menu/MenuComponents.vue"));
-  },
-  props: true
+  component: components.MenuComponents,
+  props: {
+    path: '/admin/menus',
+    component: components.MenuComponents
+  }
 }, {
   name: 'Page',
   path: '/admin/page',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ../components/page/PageComponent */ "./resources/js/components/page/PageComponent.vue"));
-  },
-  props: true
+  component: components.PageComponent,
+  props: {
+    path: '/admin/page',
+    component: components.PageComponent
+  }
 }, {
   name: 'System',
   path: '/admin/system',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ../components/setting/SystemComponent */ "./resources/js/components/setting/SystemComponent.vue"));
-  },
-  props: true
+  component: components.SystemComponent,
+  props: {
+    path: '/admin/system',
+    component: components.SystemComponent
+  }
 }, {
   name: 'Permission',
   path: '/admin/permission',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ../components/setting/PermissionComponent */ "./resources/js/components/setting/PermissionComponent.vue"));
-  },
-  props: true
+  component: components.PermissionComponent,
+  props: {
+    path: '/admin/permission',
+    component: components.PermissionComponent
+  }
 }, {
   name: 'Smtp',
   path: '/admin/smtp',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ../components/setting/SmtpComponent */ "./resources/js/components/setting/SmtpComponent.vue"));
-  },
-  props: true
+  component: components.SmtpComponent,
+  props: {
+    path: '/admin/smtp',
+    component: components.SmtpComponent
+  }
 }, {
   name: 'Imap',
   path: '/admin/imap',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ../components/setting/ImapComponent */ "./resources/js/components/setting/ImapComponent.vue"));
-  },
-  props: true
+  component: components.ImapComponent,
+  props: {
+    path: '/admin/imap',
+    component: components.ImapComponent
+  }
 }, {
   name: 'Mail',
   path: '/admin/mail',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ../components/setting/MailComponent */ "./resources/js/components/setting/MailComponent.vue"));
-  },
-  props: true
+  component: components.MailComponent,
+  props: {
+    path: '/admin/mail',
+    component: components.MailComponent
+  }
 }];
 /* harmony default export */ __webpack_exports__["default"] = (routes); //
 

@@ -46,22 +46,60 @@
             $route(to, from) {
                 let components = this.$router.options.routes;
 
-                console.log(this.$router.currentRoute)
+              //  console.log(this.$router.currentRoute)
+   /*             console.log(this.$router.options.routes)
+                */
+              //  console.log(components)
+             //   console.log(this.$route.path)
 
 
-                for(let n in this.$router.options.routes){
-                    if(components[n].path===this.$route.path){
-                        this.content = components[n].component;
+
+                //this.getComponent(components,this.$route.path)
+
+
+                this.content = this.getComponent(components,this.$route.path);
+                this.full_menu = this.$store.getters.menu;
+                this.current_path = this.$router.currentRoute.fullPath;
+
+
+/*                for(let n in components){
+                    if(components[n].props.path===this.$route.path){
+                        this.content = components[n].props.component;
                         this.full_menu = this.$store.getters.menu;
                         this.current_path = this.$router.currentRoute.fullPath;
                     }
 
-                }
+                }*/
             }
         },
         methods: {
 
+            getComponent(components, current_path) {
 
+
+
+                for (let i in components) {
+
+                    if (typeof components[i].children == 'undefined') {
+                        if (components[i].props.path == current_path) {
+                            return components[i].props.component;
+                        }
+                    } else {
+                        if (components[i].props.path == current_path) {
+                            return components[i].props.component;
+                        }else{
+                            return this.getComponent(components[i].children, current_path);
+                        }
+
+                    }
+/*
+                    if (typeof components[i].children !== 'undefined') {
+                        console.log('Children found ',components[i].children)
+                        return this.getComponent(components[i].children, current_path);
+                    }*/
+
+                }
+            },
             menuFound(menu, path,parent=null) {
                 for (let i in menu) {
                     if (menu[i].href === path) {
